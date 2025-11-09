@@ -39,3 +39,9 @@ next-env.d.ts
 *.swp
 *.swo
 *~
+
+# Next.js cache
+.next/
+src/.next/
+*.pack.gz
+*.pack
