@@ -137,13 +137,16 @@ export function Education() {
               >
                 {activeIndex === index && (
                   <motion.div 
-                    className="tab-bg"
-                    style={{ backgroundColor: item.color }}
+                    className="tab-bg absolute inset-0 rounded-full"
+                    style={{ 
+                      background: item.color ? `linear-gradient(to right, ${item.color}, ${item.color})` : 'linear-gradient(to right, rgb(6, 182, 212), rgb(37, 99, 235))',
+                      zIndex: 0
+                    }}
                     layoutId="activeTab"
                     transition={{ type: "spring", stiffness: 200, damping: 20 }}
                   />
                 )}
-                <span className="relative z-10 flex items-center justify-center">
+                <span className="relative z-10 flex items-center justify-center" style={{ color: activeIndex === index ? 'white' : 'inherit' }}>
                   <item.icon className="h-3.5 w-3.5 mr-2" />
                   {item.id === "university" ? "PhD" : item.id === "certificates" ? "PhD (Transferred)" : item.id === "masters" ? "MSc" : "BSc"}
                 </span>

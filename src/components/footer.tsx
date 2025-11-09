@@ -156,11 +156,12 @@ export function Footer() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-[rgba(var(--accent-rgb),0.9)] text-[rgb(var(--background-rgb))] shadow-lg hover:bg-[rgb(var(--accent-rgb))] focus:outline-none focus:ring-2 focus:ring-[rgba(var(--accent-rgb),0.5)] transition-all duration-300 transform hover:scale-110"
+            className="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg hover:from-cyan-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 active:scale-95 active:from-cyan-600 active:to-blue-600 transition-all duration-300 transform hover:scale-110"
             onClick={scrollToTop}
             aria-label="Scroll to top"
+            whileTap={{ scale: 0.9 }}
           >
-            <ArrowUp className="h-5 w-5" />
+            <ArrowUp className="h-5 w-5 text-white" />
           </motion.button>
         )}
       </AnimatePresence>

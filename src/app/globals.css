@@ -127,12 +127,7 @@
   }
   
   .btn-primary {
-    @apply bg-gradient-to-r from-[rgb(var(--accent-rgb))] to-[rgb(var(--accent-light-rgb))] text-white hover:brightness-110 active:scale-[0.98] shadow-[0_4px_20px_rgba(6,182,212,0.3)];
-    background-image: linear-gradient(
-      135deg, 
-      rgb(var(--accent-rgb)),
-      rgb(var(--accent-light-rgb))
-    );
+    @apply bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600 active:from-cyan-600 active:to-blue-600 active:scale-[0.98] shadow-[0_4px_20px_rgba(6,182,212,0.3)] focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2;
   }
   
   .btn-primary:hover {
@@ -140,28 +135,8 @@
     transform: translateY(-2px);
   }
   
-  .btn-primary:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -50%;
-    width: 150%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.6),
-      transparent
-    );
-    transform: skewX(-20deg);
-    transition: 0.7s ease-in-out;
-    z-index: 1;
-    opacity: 0;
-  }
-  
-  .btn-primary:hover:before {
-    left: 100%;
-    opacity: 1;
+  .btn-primary:active {
+    transform: translateY(0) scale(0.98);
   }
   
   .btn-secondary {
@@ -323,28 +298,52 @@
   }
   
   .tab-button {
-    @apply relative px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 overflow-hidden;
+    @apply relative px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 overflow-hidden focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2;
   }
   
   .tab-button-active {
-    @apply text-[rgb(var(--background-rgb))];
+    color: white !important;
+    background: transparent !important;
+  }
+  
+  .tab-button-active * {
+    color: white !important;
   }
   
   .tab-button-active .tab-bg {
-    @apply absolute inset-0 bg-[rgb(var(--accent-rgb))] -z-10;
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(to right, rgb(6, 182, 212), rgb(37, 99, 235)) !important;
+    border-radius: 9999px !important;
+    z-index: 0 !important;
   }
   
   .tab-button-inactive {
-    @apply text-[rgba(var(--foreground-rgb),0.7)] hover:text-[rgba(var(--foreground-rgb),0.9)] bg-[rgba(var(--foreground-rgb),0.05)] hover:bg-[rgba(var(--foreground-rgb),0.08)];
+    @apply text-slate-700 hover:text-slate-900 bg-white/60 hover:bg-white/80 active:bg-white/90;
+    background-color: rgba(255, 255, 255, 0.6) !important;
+  }
+  
+  .tab-button-inactive * {
+    color: rgb(51, 65, 85) !important;
   }
   
   .tab-button span {
     @apply relative z-10;
+    position: relative !important;
+    z-index: 10 !important;
   }
 
   /* Enhanced hero buttons */
   .hero-button-primary {
-    @apply btn flex items-center gap-1.5 px-6 py-3.5 text-base font-medium bg-[rgba(var(--accent-rgb),0.95)] text-[rgb(var(--background-rgb))] rounded-lg hover:bg-[rgb(var(--accent-rgb))] transition-all relative overflow-hidden;
+    @apply btn flex items-center gap-1.5 px-6 py-3.5 text-base font-medium bg-[rgba(var(--accent-rgb),0.95)] text-white rounded-lg hover:bg-[rgb(var(--accent-rgb))] transition-all relative overflow-hidden;
+  }
+  
+  .hero-button-primary:focus {
+    @apply outline-none ring-2 ring-cyan-500 ring-offset-2;
+  }
+  
+  .hero-button-primary:active {
+    @apply scale-95;
   }
   
   .hero-icon {
@@ -357,7 +356,15 @@
   }
   
   .hero-button-secondary {
-    @apply btn flex items-center gap-1.5 px-6 py-3.5 text-base font-medium bg-transparent backdrop-blur-md text-[rgb(var(--foreground-rgb))] border border-[rgba(var(--border-rgb),0.8)] rounded-lg hover:bg-[rgba(var(--foreground-rgb),0.05)] hover:border-[rgba(var(--accent-rgb),0.5)] transition-all relative overflow-hidden;
+    @apply btn flex items-center gap-1.5 px-6 py-3.5 text-base font-medium bg-white/80 backdrop-blur-md text-slate-800 border border-slate-300/60 rounded-lg hover:bg-white hover:border-cyan-400/60 transition-all relative overflow-hidden;
+  }
+  
+  .hero-button-secondary:focus {
+    @apply outline-none ring-2 ring-cyan-500 ring-offset-2;
+  }
+  
+  .hero-button-secondary:active {
+    @apply scale-95;
   }
 
   /* New professional elements */

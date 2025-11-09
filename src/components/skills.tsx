@@ -218,11 +218,15 @@ export function Skills() {
                 {activeTab === index && (
                   <motion.div
                     layoutId="activeTabBackground"
-                    className="tab-bg"
+                    className="tab-bg absolute inset-0 rounded-full"
+                    style={{
+                      background: 'linear-gradient(to right, rgb(6, 182, 212), rgb(37, 99, 235))',
+                      zIndex: 0
+                    }}
                     transition={{ type: "spring", stiffness: 200, damping: 20 }}
                   />
                 )}
-                <span className="relative z-10">{category.name}</span>
+                <span className="relative z-10" style={{ color: activeTab === index ? 'white' : 'inherit' }}>{category.name}</span>
               </button>
             ))}
           </motion.div>

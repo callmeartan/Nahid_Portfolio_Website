@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function Header() {
@@ -26,15 +26,15 @@ export function Header() {
   
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      setIsScrolled(window.scrollY > 50);
       
-      // Update active section based on scroll position with improved threshold detection
+      // Update active section based on scroll position
       const sections = document.querySelectorAll('section[id]');
       const scrollY = window.scrollY;
       
       sections.forEach(section => {
         const sectionHeight = (section as HTMLElement).offsetHeight;
-        const sectionTop = (section as HTMLElement).offsetTop - 100;
+        const sectionTop = (section as HTMLElement).offsetTop - 150;
         const sectionId = section.getAttribute('id');
         const scrollPosition = scrollY + window.innerHeight * 0.3;
         
@@ -45,7 +45,7 @@ export function Header() {
     };
     
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initialize on mount
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   
@@ -59,22 +59,39 @@ export function Header() {
   ];
   
   return (
+    <>
+      {/* Floating Glass Header */}
     <motion.header 
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        initial={{ y: -100, opacity: 0, x: "-50%" }}
+        animate={{ 
+          y: 0, 
+          opacity: 1,
+          x: "-50%",
+          scale: isScrolled ? 0.98 : 1,
+        }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="fixed z-50 w-[95%] max-w-7xl"
+        style={{
+          top: isScrolled ? '12px' : '16px',
+          left: '50%',
+        }}
+      >
+        <div
+          className={`relative rounded-2xl transition-all duration-500 ${
         isScrolled 
-          ? "py-3 bg-[rgba(255,255,255,0.8)] backdrop-blur-xl shadow-lg border-b border-[rgba(6,182,212,0.2)]" 
-          : "py-5 bg-[rgba(255,255,255,0.4)] backdrop-blur-md"
+              ? "bg-white/40 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(6,182,212,0.2),0_0_0_1px_rgba(255,255,255,0.3),0_0_60px_rgba(6,182,212,0.1)]"
+              : "bg-white/30 backdrop-blur-lg shadow-[0_8px_32px_0_rgba(6,182,212,0.1),0_0_0_1px_rgba(255,255,255,0.2),0_0_40px_rgba(6,182,212,0.05)]"
       }`}
     >
-      <div className="container mx-auto">
+          {/* Glowing border effect */}
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400/20 via-blue-400/20 to-cyan-400/20 opacity-0 hover:opacity-100 transition-opacity duration-500 blur-xl -z-10"></div>
+          
+          <div className="px-6 py-4 md:px-8 md:py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link 
             href="#home" 
-            className="text-xl font-bold font-heading relative z-10 group"
+                className="text-xl font-bold font-secondary relative z-10 group"
             onClick={closeMenu}
             aria-label="Go to homepage"
             tabIndex={0}
@@ -84,7 +101,7 @@ export function Header() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="text-slate-900"
+                  className="text-slate-900 group-hover:text-cyan-600 transition-colors duration-300"
               >
                 Nahid
               </motion.span>
@@ -96,11 +113,16 @@ export function Header() {
             >
               .
             </motion.span>
-            <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full group-hover:w-full transition-all duration-300"></span>
+                <motion.span 
+                  className="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-400 rounded-full"
+                  initial={{ width: 0 }}
+                  whileHover={{ width: "100%" }}
+                  transition={{ duration: 0.3 }}
+                />
           </Link>
           
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-2">
+              <nav className="hidden md:flex items-center space-x-1">
             {navItems.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -110,20 +132,38 @@ export function Header() {
               >
                 <Link
                   href={item.href}
-                  className={`px-4 py-2 font-medium relative group text-sm transition-colors rounded-md ${
+                      className={`relative px-4 py-2 font-medium font-secondary text-sm transition-all duration-300 rounded-lg group ${
                     activeSection === item.id 
                       ? "text-cyan-600" 
-                      : "text-slate-700 hover:text-cyan-600"
+                          : "text-slate-700 hover:text-cyan-500"
                   }`}
                   onClick={closeMenu}
                   aria-current={activeSection === item.id ? "page" : undefined}
                   tabIndex={0}
                   onKeyDown={(e) => e.key === 'Enter' && closeMenu()}
                 >
-                  {item.name}
-                  <span className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full transition-transform origin-left duration-300 ${
-                    activeSection === item.id ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                  }`}></span>
+                      <span className="relative z-10">{item.name}</span>
+                      {/* Glowing hover effect */}
+                      <motion.div
+                        className={`absolute inset-0 rounded-lg ${
+                          activeSection === item.id
+                            ? "bg-cyan-500/10 shadow-[0_0_20px_rgba(6,182,212,0.3)]"
+                            : "bg-cyan-500/0 group-hover:bg-cyan-500/10 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.2)]"
+                        }`}
+                        initial={false}
+                        animate={{
+                          opacity: activeSection === item.id ? 1 : 0,
+                        }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      {/* Active indicator */}
+                      {activeSection === item.id && (
+                        <motion.div
+                          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-cyan-500 shadow-[0_0_8px_rgba(6,182,212,0.8)]"
+                          layoutId="activeIndicator"
+                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        />
+                      )}
                 </Link>
               </motion.div>
             ))}
@@ -131,19 +171,19 @@ export function Header() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.7, type: "spring", stiffness: 125 }}
+              className="ml-2"
             >
-              <Link 
-                href="#contact" 
-                className="ml-3 btn btn-primary !py-2 !text-xs group relative overflow-hidden"
-                onClick={closeMenu}
-                aria-label="Contact me"
-                tabIndex={0}
-                onKeyDown={(e) => e.key === 'Enter' && closeMenu()}
-              >
-                <span className="relative z-10">Let's Connect</span>
-                <ArrowRight className="h-3.5 w-3.5 hero-icon relative z-10" />
-                <span className="absolute inset-0 bg-[rgba(var(--accent-rgb),0.9)] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
-              </Link>
+                  <Link 
+                    href="#contact" 
+                    className="relative inline-flex items-center gap-2 px-5 py-2 font-medium font-secondary text-sm rounded-lg overflow-hidden group bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-[0_4px_20px_rgba(6,182,212,0.4)] hover:shadow-[0_6px_30px_rgba(6,182,212,0.6)] hover:from-cyan-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 active:scale-95 active:from-cyan-600 active:to-blue-600 transition-all duration-300"
+                    onClick={closeMenu}
+                    aria-label="Contact me"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === 'Enter' && closeMenu()}
+                  >
+                    <span className="relative z-10 text-white">Let's Connect</span>
+                    <ArrowRight className="h-3.5 w-3.5 relative z-10 text-white transition-transform group-hover:translate-x-1" />
+                  </Link>
             </motion.div>
           </nav>
           
@@ -153,8 +193,9 @@ export function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               whileTap={{ scale: 0.9 }}
+                  whileHover={{ scale: 1.05 }}
               transition={{ delay: 0.2 }}
-              className="p-2 text-[rgb(var(--foreground-rgb))] hover:bg-[rgba(var(--foreground-rgb),0.05)] hover:text-[rgb(var(--accent-rgb))] rounded-lg transition-all"
+                  className="p-2.5 rounded-lg text-slate-700 hover:text-cyan-600 hover:bg-white/20 transition-all duration-300"
               onClick={toggleMenu}
               aria-label={isOpen ? "Close menu" : "Open menu"}
               aria-expanded={isOpen}
@@ -165,35 +206,51 @@ export function Header() {
           </div>
         </div>
       </div>
+        </div>
+      </motion.header>
       
-      {/* Mobile Navigation Menu */}
+      {/* Mobile Glassy Slide-Down Menu */}
       <AnimatePresence>
         {isOpen && (
+          <>
+            {/* Backdrop */}
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-[rgba(255,255,255,0.95)] backdrop-blur-xl flex flex-col overflow-y-auto"
-          >
-            <div className="container mx-auto px-4 py-6">
-              <div className="flex justify-between items-center mb-10">
+              className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
+              onClick={closeMenu}
+            />
+            
+            {/* Glass Menu */}
+            <motion.div
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed top-20 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-md rounded-2xl bg-white/40 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(6,182,212,0.2),0_0_0_1px_rgba(255,255,255,0.3)] border border-white/20 overflow-hidden"
+            >
+              {/* Glowing border */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400/30 via-blue-400/30 to-cyan-400/30 opacity-50 blur-xl -z-10"></div>
+              
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-8">
                 <Link 
                   href="#home" 
-                  className="text-xl font-bold font-heading relative group"
+                    className="text-xl font-bold font-secondary relative group"
                   onClick={closeMenu}
                   aria-label="Go to homepage"
                   tabIndex={isOpen ? 0 : -1}
                 >
-                  <span className="text-slate-900">Nahid</span>
+                    <span className="text-slate-900 group-hover:text-cyan-600 transition-colors">Nahid</span>
                   <span className="text-cyan-500">.</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full group-hover:w-full transition-all duration-300"></span>
                 </Link>
                 <motion.button
-                  whileHover={{ rotate: 90 }}
+                    whileHover={{ rotate: 90, scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   transition={{ duration: 0.2 }}
-                  className="p-2 text-[rgb(var(--foreground-rgb))] hover:bg-[rgba(var(--foreground-rgb),0.05)] hover:text-[rgb(var(--accent-rgb))] rounded-lg transition-all"
+                    className="p-2 rounded-lg text-slate-700 hover:text-cyan-600 hover:bg-white/20 transition-all"
                   onClick={toggleMenu}
                   aria-label="Close menu"
                   tabIndex={isOpen ? 0 : -1}
@@ -202,7 +259,7 @@ export function Header() {
                 </motion.button>
               </div>
               
-              <nav className="flex flex-col space-y-4 mb-8">
+                <nav className="flex flex-col space-y-2">
                 {navItems.map((item, index) => (
                   <motion.div
                     key={item.name}
@@ -212,16 +269,23 @@ export function Header() {
                   >
                     <Link
                       href={item.href}
-                      className={`block py-3 px-4 text-lg font-medium rounded-lg transition-all ${
+                        className={`relative block py-3 px-4 text-base font-medium font-secondary rounded-lg transition-all duration-300 group ${
                         activeSection === item.id
-                          ? "bg-cyan-50 text-cyan-600"
-                          : "text-slate-700 hover:bg-cyan-50 hover:text-cyan-600"
+                            ? "text-cyan-600 bg-cyan-500/10 shadow-[0_0_20px_rgba(6,182,212,0.2)]"
+                            : "text-slate-700 hover:text-cyan-600 hover:bg-white/20"
                       }`}
                       onClick={closeMenu}
                       aria-current={activeSection === item.id ? "page" : undefined}
                       tabIndex={isOpen ? 0 : -1}
                     >
-                      {item.name}
+                        <span className="relative z-10">{item.name}</span>
+                        {activeSection === item.id && (
+                          <motion.div
+                            className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 rounded-r-full bg-cyan-500 shadow-[0_0_8px_rgba(6,182,212,0.8)]"
+                            layoutId="mobileActiveIndicator"
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                          />
+                        )}
                     </Link>
                   </motion.div>
                 ))}
@@ -234,7 +298,7 @@ export function Header() {
                 >
                   <Link
                     href="#contact"
-                    className="block w-full py-3 px-5 font-medium rounded-lg text-center transition-all bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg"
+                      className="block w-full py-3 px-5 font-medium font-secondary text-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-[0_4px_20px_rgba(6,182,212,0.4)] hover:shadow-[0_6px_30px_rgba(6,182,212,0.6)] transition-all duration-300"
                     onClick={closeMenu}
                     tabIndex={isOpen ? 0 : -1}
                   >
@@ -242,18 +306,11 @@ export function Header() {
                   </Link>
                 </motion.div>
               </nav>
-              
-              {/* Mobile menu decorative elements */}
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.7 }}
-                className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none"
-              />
             </div>
           </motion.div>
+          </>
         )}
       </AnimatePresence>
-    </motion.header>
+    </>
   );
 } 

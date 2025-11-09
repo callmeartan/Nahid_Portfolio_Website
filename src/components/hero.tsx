@@ -101,32 +101,20 @@ export function Hero() {
               >
                 <Link
                   href="#projects"
-                  className="hero-button-primary group relative overflow-hidden rounded-md px-5 py-3 font-medium inline-flex items-center"
+                  className="group relative overflow-hidden rounded-md px-5 py-3 font-medium inline-flex items-center bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-[0_4px_20px_rgba(6,182,212,0.4)] hover:shadow-[0_6px_30px_rgba(6,182,212,0.6)] hover:from-cyan-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 active:scale-95 active:from-cyan-600 active:to-blue-600 transition-all duration-300"
                   aria-label="View my work"
                 >
-                  <span className="relative z-10">View My Work</span>
-                  <ArrowRight className="ml-2 h-4 w-4 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
-                  <motion.span 
-                    className="absolute inset-0 bg-gradient-to-r from-[rgba(var(--accent-rgb),1)] to-[rgba(var(--accent-rgb),0.9)]"
-                    initial={{ y: "100%" }}
-                    whileHover={{ y: 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
+                  <span className="relative z-10 text-white">View My Work</span>
+                  <ArrowRight className="ml-2 h-4 w-4 relative z-10 text-white transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
                 
                 <Link
                   href="/resume"
-                  className="hero-button-secondary group relative overflow-hidden rounded-md px-5 py-3 font-medium inline-flex items-center border border-[rgba(var(--border-rgb),0.6)]"
+                  className="group relative overflow-hidden rounded-md px-5 py-3 font-medium inline-flex items-center border-2 border-slate-300 bg-white/90 backdrop-blur-sm text-slate-800 hover:bg-white hover:border-cyan-400 hover:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 active:scale-95 active:bg-slate-50 transition-all duration-300"
                   aria-label="View resume"
                 >
                   <span className="relative z-10">Resume</span>
                   <Download className="ml-2 h-4 w-4 relative z-10 transition-transform duration-300 group-hover:translate-y-1" />
-                  <motion.span 
-                    className="absolute inset-0 bg-[rgba(var(--foreground-rgb),0.05)]"
-                    initial={{ y: "100%" }}
-                    whileHover={{ y: 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
                 </Link>
               </motion.div>
               
@@ -137,9 +125,19 @@ export function Hero() {
                 transition={{ delay: 0.5, duration: 0.7 }}
               >
                 <Link 
+                  href="https://github.com/nahidnasiri" 
+                  target="_blank" 
+                  className="text-slate-700 hover:text-cyan-600 focus:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 rounded-full p-1 transition-all duration-300 hover:-translate-y-1 active:scale-95"
+                  aria-label="GitHub profile"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && window.open("https://github.com/nahidnasiri", "_blank")}
+                >
+                  <Github className="h-5 w-5" />
+                </Link>
+                <Link 
                   href="https://www.linkedin.com/in/nahid-nasiri-17b5aa136/" 
                   target="_blank" 
-                  className="text-slate-700 hover:text-cyan-600 transition-all duration-300 hover:-translate-y-1"
+                  className="text-slate-700 hover:text-cyan-600 focus:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 rounded-full p-1 transition-all duration-300 hover:-translate-y-1 active:scale-95"
                   aria-label="LinkedIn profile"
                   tabIndex={0}
                   onKeyDown={(e) => e.key === 'Enter' && window.open("https://www.linkedin.com/in/nahid-nasiri-17b5aa136/", "_blank")}
@@ -148,7 +146,7 @@ export function Hero() {
                 </Link>
                 <Link 
                   href="mailto:nnasiri@ucsc.edu" 
-                  className="text-slate-700 hover:text-cyan-600 transition-all duration-300 hover:-translate-y-1"
+                  className="text-slate-700 hover:text-cyan-600 focus:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 rounded-full p-1 transition-all duration-300 hover:-translate-y-1 active:scale-95"
                   aria-label="Email"
                   tabIndex={0}
                   onKeyDown={(e) => e.key === 'Enter' && window.open("mailto:nnasiri@ucsc.edu", "_blank")}

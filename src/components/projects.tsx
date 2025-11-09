@@ -185,11 +185,15 @@ export function Projects() {
               {activeCategory === category && (
                 <motion.div
                   layoutId="activeCategoryBackground"
-                  className="tab-bg"
+                  className="tab-bg absolute inset-0 rounded-full"
+                  style={{
+                    background: 'linear-gradient(to right, rgb(6, 182, 212), rgb(37, 99, 235))',
+                    zIndex: 0
+                  }}
                   transition={{ type: "spring", stiffness: 200, damping: 20 }}
                 />
               )}
-              <span>{category}</span>
+              <span className="relative z-10" style={{ color: activeCategory === category ? 'white' : 'inherit' }}>{category}</span>
             </motion.button>
           ))}
         </motion.div>

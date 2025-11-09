@@ -344,17 +344,17 @@ export function Contact() {
                 {/* Submit button */}
                 <motion.button
                   type="submit"
-                  className="btn btn-primary w-full group relative overflow-hidden"
+                  className="w-full group relative overflow-hidden rounded-lg px-6 py-3 font-medium bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-[0_4px_20px_rgba(6,182,212,0.4)] hover:shadow-[0_6px_30px_rgba(6,182,212,0.6)] hover:from-cyan-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 active:scale-95 active:from-cyan-600 active:to-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
                   disabled={form.status === "submitting"}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <span className="relative z-10 flex items-center justify-center">
+                  <span className="relative z-10 flex items-center justify-center text-white">
                     {form.status === "submitting" ? (
                       <>
                         <motion.div
                           animate={{ rotate: 360 }}
                           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                          className="mr-2 h-4 w-4 border-2 border-[rgb(var(--background-rgb))] border-t-transparent rounded-full"
+                          className="mr-2 h-4 w-4 border-2 border-white border-t-transparent rounded-full"
                         />
                         Sending...
                       </>

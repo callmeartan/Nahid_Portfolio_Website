@@ -457,30 +457,30 @@ export default function ResumePage() {
                 </div>
 
                 <div className="space-y-6">
-                  <motion.div
-                    className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                    whileHover={{ y: -5 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                  >
-                    <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
-                    <div className="p-6 pl-8">
-                      <div className="flex flex-wrap items-center justify-between mb-2">
+                <motion.div
+                  className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                >
+                  <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
+                  <div className="p-6 pl-8">
+                    <div className="flex flex-wrap items-center justify-between mb-2">
                         <h3 className="text-xl font-semibold group-hover:text-[rgb(var(--accent-rgb)))] transition-colors">PhD in Electrical and Computer Engineering</h3>
-                        <span className="badge flex items-center">
-                          <Calendar className="h-3 w-3 mr-1.5" />
+                      <span className="badge flex items-center">
+                        <Calendar className="h-3 w-3 mr-1.5" />
                           2025
-                        </span>
-                      </div>
+                      </span>
+                    </div>
                       <p className="text-[rgb(var(--muted-rgb)))] mb-2">University of California, Santa Cruz</p>
                       <p className="text-sm text-[rgb(var(--muted-rgb)))]">GPA: 4.0/4.0 | Thesis: "Extracting Implicit Features from Hand Fidgeting in ADHD Using Machine Learning"</p>
-                    </div>
-                  </motion.div>
+                  </div>
+                </motion.div>
 
                   <motion.div
                     className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
                     whileHover={{ y: -5 }}
                     transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                  >
+                >
                     <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
                     <div className="p-6 pl-8">
                       <div className="flex flex-wrap items-center justify-between mb-2">
@@ -511,7 +511,7 @@ export default function ResumePage() {
                       </div>
                       <p className="text-[rgb(var(--muted-rgb)))] mb-2">Istanbul Şehir University, Istanbul, Turkey</p>
                       <p className="text-sm text-[rgb(var(--muted-rgb)))]">GPA: 3.94/4.0 (Best Student Award)</p>
-                    </div>
+                      </div>
                   </motion.div>
 
                   <motion.div
@@ -533,62 +533,62 @@ export default function ResumePage() {
                     </div>
                   </motion.div>
                 </div>
-              </motion.section>
+                </motion.section>
 
-              <motion.section
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
+                <motion.section
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
-                className="relative"
-              >
-                <div className="flex items-center mb-6">
-                  <div className="h-8 w-8 rounded-lg bg-[rgba(var(--accent-rgb),0.1)] flex items-center justify-center mr-3 text-[rgb(var(--accent-rgb)))]">
-                    <Award className="h-4 w-4" />
-                  </div>
+                  className="relative"
+                >
+                  <div className="flex items-center mb-6">
+                    <div className="h-8 w-8 rounded-lg bg-[rgba(var(--accent-rgb),0.1)] flex items-center justify-center mr-3 text-[rgb(var(--accent-rgb)))]">
+                      <Award className="h-4 w-4" />
+                    </div>
                   <h2 className="section-title text-[rgb(var(--accent-rgb)))]">Honors & Awards</h2>
-                </div>
+                  </div>
 
                 <div className="space-y-4">
-                  <motion.div
-                    className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                    whileHover={{ y: -5 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                  >
+                    <motion.div
+                      className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
+                      whileHover={{ y: -5 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                    >
                     <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
                     <div className="p-6 pl-8">
                       <h3 className="font-semibold text-[rgb(var(--accent-rgb)))] mb-2">University Fellowship Award</h3>
                       <p className="text-[rgb(var(--muted-rgb)))] text-sm mb-1">2020–2021</p>
                       <p className="text-sm">Competitive academic fellowship awarded to less than 15% of applicants.</p>
                     </div>
-                  </motion.div>
+                    </motion.div>
 
-                  <motion.div
-                    className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                    whileHover={{ y: -5 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                  >
+                    <motion.div
+                      className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
+                      whileHover={{ y: -5 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                    >
                     <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
                     <div className="p-6 pl-8">
                       <h3 className="font-semibold text-[rgb(var(--accent-rgb)))] mb-2">Graduate Research & Teaching Assistantship</h3>
                       <p className="text-[rgb(var(--muted-rgb)))] text-sm mb-1">2021–2023</p>
                       <p className="text-sm">Merit-based; granted to fewer than 20% of graduate candidates.</p>
                     </div>
-                  </motion.div>
+                    </motion.div>
 
-                  <motion.div
-                    className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                    whileHover={{ y: -5 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                  >
+                    <motion.div
+                      className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
+                      whileHover={{ y: -5 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                    >
                     <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
                     <div className="p-6 pl-8">
                       <h3 className="font-semibold text-[rgb(var(--accent-rgb)))] mb-2">European Union Scholarship</h3>
                       <p className="text-[rgb(var(--muted-rgb)))] text-sm mb-1">2014–2017</p>
                       <p className="text-sm">Awarded for master's degree for ranking 1st among Computer Engineering students.</p>
                     </div>
-                  </motion.div>
-                </div>
-              </motion.section>
+                    </motion.div>
+                  </div>
+                </motion.section>
             </div>
           </motion.div>
         </div>
