@@ -90,7 +90,7 @@ export function Hero() {
                 </span>
               </h1>
               <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-xl leading-relaxed font-body text-pretty">
-                Machine Learning Engineer and PhD researcher building production-grade AI systems across computer vision, large language models, and intelligent automation. Experienced in developing, testing, and optimizing deep learning models, computer vision systems, and LLMs to enhance performance, scalability, and reliability.
+                Innovative and results-driven engineer specializing in AI, machine learning, and software engineering across autonomous systems and intelligent platforms. Experienced in developing, testing, and optimizing deep learning models, computer vision systems, and large language models (LLMs) to enhance performance, scalability, and reliability. Skilled in designing automation frameworks, simulation environments, and multimodal data pipelines that accelerate validation and elevate model precision.
               </p>
               
               <motion.div 

@@ -9,27 +9,27 @@ export function Skills() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [activeTab, setActiveTab] = useState<number>(0);
 
-  // Group skills by category with expertise levels
+  // Group skills by category matching resume structure
   const skillCategories = [
     {
-      id: "technical",
-      name: "Technical Skills",
-      description: "Programming languages and core technologies I work with"
+      id: "languages",
+      name: "Languages & Tools",
+      description: "Programming languages and core ML frameworks"
     },
     {
-      id: "specific",
-      name: "Domain Expertise",
-      description: "Specialized knowledge in specific areas"
+      id: "expertise",
+      name: "Areas of Expertise",
+      description: "Specialized knowledge in machine learning and AI systems"
     },
     {
-      id: "tools",
-      name: "Tools & Methods",
-      description: "Software, tools and methodologies I use daily"
+      id: "infrastructure",
+      name: "Infrastructure & Cloud",
+      description: "MLOps, automation, and cloud platforms"
     }
   ];
 
   const skillGroups = [
-    // Technical Skills
+    // Languages & Tools
     [
       {
         name: "Programming Languages",
@@ -37,10 +37,10 @@ export function Skills() {
         color: "rgb(var(--accent-rgb))",
         skills: [
           { name: "Python", expertise: "Expert", description: "Primary language for ML/AI development" },
-          { name: "Java", expertise: "Advanced", description: "For enterprise applications and systems" },
-          { name: "C++", expertise: "Advanced", description: "For performance-critical ML systems" },
-          { name: "MATLAB", expertise: "Advanced", description: "For research and signal processing" },
-          { name: "SQL", expertise: "Advanced", description: "For data management and analysis" }
+          { name: "Java", expertise: "Advanced", description: "Enterprise applications and systems" },
+          { name: "C++", expertise: "Advanced", description: "Performance-critical ML systems" },
+          { name: "MATLAB", expertise: "Advanced", description: "Research and signal processing" },
+          { name: "SQL", expertise: "Advanced", description: "Data management and analysis" }
         ]
       },
       {
@@ -48,11 +48,25 @@ export function Skills() {
         icon: BrainCircuit,
         color: "#10b981",
         skills: [
-          { name: "PyTorch", expertise: "Expert", description: "Deep learning framework for research and production" },
           { name: "TensorFlow", expertise: "Expert", description: "End-to-end ML platform for scalable systems" },
+          { name: "PyTorch", expertise: "Expert", description: "Deep learning framework for research and production" },
           { name: "OpenCV", expertise: "Expert", description: "Computer vision and image processing" },
           { name: "Jupyter", expertise: "Expert", description: "Interactive development and experimentation" },
-          { name: "Scikit-learn", expertise: "Advanced", description: "Classical ML algorithms and tools" }
+          { name: "Git", expertise: "Expert", description: "Version control and collaboration" }
+        ]
+      }
+    ],
+    // Areas of Expertise
+    [
+      {
+        name: "Machine Learning & Deep Learning",
+        icon: BrainCircuit,
+        color: "#8b5cf6",
+        skills: [
+          { name: "CNN", expertise: "Expert", description: "Convolutional neural networks for vision tasks" },
+          { name: "LSTM/RNN", expertise: "Expert", description: "Recurrent networks for sequence modeling" },
+          { name: "Model Training & Optimization", expertise: "Expert", description: "Training strategies and model fine-tuning" },
+          { name: "A/B Testing", expertise: "Expert", description: "Model validation and experimentation" }
         ]
       },
       {
@@ -62,22 +76,7 @@ export function Skills() {
         skills: [
           { name: "LLM Fine-tuning", expertise: "Expert", description: "Customizing large language models" },
           { name: "RAG Systems", expertise: "Expert", description: "Retrieval-Augmented Generation pipelines" },
-          { name: "Transformer Architectures", expertise: "Expert", description: "Building transformer-based models" },
-          { name: "Prompt Engineering", expertise: "Advanced", description: "Optimizing LLM interactions" }
-        ]
-      }
-    ],
-    // Domain Expertise
-    [
-      {
-        name: "Deep Learning",
-        icon: BrainCircuit,
-        color: "#8b5cf6",
-        skills: [
-          { name: "CNN Architectures", expertise: "Expert", description: "Convolutional neural networks for vision" },
-          { name: "LSTM/RNN", expertise: "Expert", description: "Recurrent networks for sequence modeling" },
-          { name: "Encoder-Decoder", expertise: "Expert", description: "Sequence-to-sequence architectures" },
-          { name: "Model Optimization", expertise: "Expert", description: "Training and fine-tuning strategies" }
+          { name: "Transformer Architectures", expertise: "Expert", description: "Building transformer-based models" }
         ]
       },
       {
@@ -87,45 +86,45 @@ export function Skills() {
         skills: [
           { name: "Object Detection", expertise: "Expert", description: "Detecting and localizing objects in images" },
           { name: "Semantic Segmentation", expertise: "Expert", description: "Pixel-level image understanding" },
-          { name: "Image Classification", expertise: "Expert", description: "Categorizing visual content" },
-          { name: "Image Denoising", expertise: "Advanced", description: "Enhancing image quality with ML" }
+          { name: "Image Classification", expertise: "Expert", description: "Categorizing visual content" }
         ]
       },
       {
-        name: "MLOps & Infrastructure",
-        icon: Server,
+        name: "Simulation & Data Pipelines",
+        icon: Zap,
         color: "#f59e0b",
         skills: [
-          { name: "MLOps Pipelines", expertise: "Expert", description: "End-to-end ML lifecycle management" },
-          { name: "Distributed Training", expertise: "Expert", description: "DDP, FSDP for large-scale training" },
-          { name: "A/B Testing", expertise: "Expert", description: "Model validation and experimentation" },
-          { name: "Automated Reporting", expertise: "Expert", description: "Data-driven validation frameworks" }
+          { name: "Simulation Environments", expertise: "Expert", description: "CARLA, Unity3D for synthetic data generation" },
+          { name: "Data Pipelines", expertise: "Expert", description: "Building scalable data workflows" },
+          { name: "Cross-Functional Collaboration", expertise: "Expert", description: "Reporting and team coordination" }
         ]
       }
     ],
-    // Tools & Methods
+    // Infrastructure & Cloud
     [
       {
-        name: "Cloud Platforms",
-        icon: Cloud,
+        name: "Infrastructure & Automation",
+        icon: Server,
         color: "#f59e0b",
         skills: [
-          { name: "AWS SageMaker", expertise: "Expert", description: "Managed ML platform on AWS" },
-          { name: "Azure ML", expertise: "Advanced", description: "Microsoft's ML cloud services" },
-          { name: "Google Cloud Platform", expertise: "Advanced", description: "GCP ML and data services" },
-          { name: "Kubernetes", expertise: "Advanced", description: "Container orchestration for ML workloads" }
+          { name: "A/B Testing", expertise: "Expert", description: "Model validation and experimentation" },
+          { name: "CI/CD", expertise: "Expert", description: "Automated testing and deployment" },
+          { name: "MLOps", expertise: "Expert", description: "End-to-end ML lifecycle management" },
+          { name: "Automated Reporting Systems", expertise: "Expert", description: "Data-driven validation frameworks" },
+          { name: "Remote Test Stations", expertise: "Advanced", description: "Distributed validation infrastructure" },
+          { name: "Data Pipelines", expertise: "Expert", description: "Building scalable data workflows" }
         ]
       },
       {
-        name: "Development & Tools",
-        icon: Zap,
+        name: "Cloud & Platforms",
+        icon: Cloud,
         color: "#06b6d4",
         skills: [
-          { name: "Git", expertise: "Expert", description: "Version control and collaboration" },
-          { name: "CI/CD", expertise: "Expert", description: "Automated testing and deployment" },
-          { name: "Data Pipelines", expertise: "Expert", description: "Building scalable data workflows" },
-          { name: "Simulation Environments", expertise: "Advanced", description: "CARLA, Unity3D for synthetic data" },
-          { name: "Remote Test Stations", expertise: "Advanced", description: "Distributed validation infrastructure" }
+          { name: "AWS SageMaker", expertise: "Expert", description: "Managed ML platform on AWS" },
+          { name: "Azure", expertise: "Advanced", description: "Microsoft cloud services" },
+          { name: "Google Cloud Platform", expertise: "Advanced", description: "GCP ML and data services" },
+          { name: "Kubernetes", expertise: "Advanced", description: "Container orchestration for ML workloads" },
+          { name: "Distributed Systems (DDP, FSDP)", expertise: "Expert", description: "Large-scale distributed training" }
         ]
       }
     ]

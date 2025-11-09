@@ -1,16 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, Github, Linkedin, Instagram, Heart, ArrowUp, Send } from "lucide-react";
+import { Mail, Github, Linkedin, Instagram, Heart, ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function Footer() {
   const [currentYear] = useState(new Date().getFullYear());
   const [showScrollButton, setShowScrollButton] = useState(false);
-  const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [subscribeStatus, setSubscribeStatus] = useState<"idle" | "success" | "error">("idle");
   
   useEffect(() => {
     const handleScroll = () => {
@@ -26,24 +23,6 @@ export function Footer() {
       top: 0,
       behavior: "smooth"
     });
-  };
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email || email.trim() === "") return;
-    
-    setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubscribeStatus("success");
-      setEmail("");
-      
-      // Reset status after 3 seconds
-      setTimeout(() => {
-        setSubscribeStatus("idle");
-      }, 3000);
-    }, 1000);
   };
   
   const links = [
@@ -75,7 +54,7 @@ export function Footer() {
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[rgba(var(--accent-rgb),0.6)] to-transparent"></div>
 
       <div className="container mx-auto pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-12">
           {/* About */}
           <div>
             <Link href="#home" className="text-xl font-bold font-heading mb-6 inline-block relative group">
@@ -156,42 +135,6 @@ export function Footer() {
             </ul>
           </div>
           
-          {/* Newsletter */}
-          <div>
-            <h3 className="text-base font-bold mb-6 font-heading relative inline-block">
-              Stay Updated
-              <span className="absolute bottom-0 left-0 w-1/3 h-[2px] bg-[rgba(var(--accent-rgb),0.4)] rounded-full"></span>
-            </h3>
-            <p className="text-sm text-[rgb(var(--muted-rgb))] mb-4 leading-relaxed">
-              Subscribe to my newsletter for project updates and tech insights.
-            </p>
-            <form className="flex flex-col space-y-2" onSubmit={handleSubscribe}>
-              <div className="relative">
-                <input 
-                  type="email" 
-                  placeholder="Your email" 
-                  className="input-field !py-2.5 !text-sm w-full pr-10 focus:border-[rgb(var(--accent-rgb))]"
-                  aria-label="Email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  disabled={isSubmitting || subscribeStatus === "success"}
-                />
-                <Send className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[rgb(var(--muted-rgb))]" />
-              </div>
-              <button 
-                type="submit" 
-                className={`btn btn-primary !py-2.5 !text-sm w-full flex items-center justify-center ${
-                  isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
-                } ${
-                  subscribeStatus === "success" ? 'bg-green-500 border-green-500 hover:bg-green-600 hover:border-green-600' : ''
-                }`}
-                aria-label="Subscribe to newsletter"
-                disabled={isSubmitting || subscribeStatus === "success"}
-              >
-                {isSubmitting ? 'Subscribing...' : subscribeStatus === "success" ? 'Subscribed ✓' : 'Subscribe'}
-              </button>
-            </form>
-          </div>
         </div>
         
         <div className="border-t border-[rgba(var(--border-rgb),0.7)] py-6 mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">

@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Rocket, BrainCircuit, Palette, Layers, TrendingUp, Award } from "lucide-react";
+import { Rocket, BrainCircuit, Palette, Layers, TrendingUp, Award, Zap } from "lucide-react";
 import React from "react";
 
 export function HireMe() {
@@ -11,39 +11,39 @@ export function HireMe() {
 
   const features = [
     {
-      icon: Rocket,
-      title: "Proven Mobile Expertise",
-      description: "I have a track record of building and shipping high-quality mobile apps to the App Store, demonstrating my ability to deliver complete, production-ready solutions.",
+      icon: BrainCircuit,
+      title: "Research & Production Expertise",
+      description: "Brings a unique blend of PhD-level research rigor and production-grade engineering. Successfully bridges applied research and real-world deployment to advance AI-enabled technologies.",
       color: "rgb(var(--accent-rgb))"
     },
     {
-      icon: BrainCircuit,
-      title: "AI Integration & Innovation",
-      description: "My experience with AI, LLMs, and tools like Ollama allows me to build intelligent, cutting-edge applications that solve complex problems.",
+      icon: Rocket,
+      title: "Proven Impact & Results",
+      description: "Track record of delivering measurable improvements: 40% reduction in manual lookup time, 25% increase in AI reasoning accuracy, 47% improvement in perception accuracy, and 45% increase in diagnostic precision.",
       color: "#10b981"
     },
     {
-      icon: Palette,
-      title: "Strong UI/UX Focus",
-      description: "I am passionate about creating intuitive, beautiful, and user-centric interfaces that provide an exceptional user experience.",
-      color: "#8b5cf6"
-    },
-    {
       icon: Layers,
-      title: "Full-Stack Perspective",
-      description: "With skills in both mobile (Flutter) and web (Next.js, React), I understand the entire technology stack and can contribute to a wider range of projects.",
+      title: "End-to-End ML Systems",
+      description: "Experienced in developing, testing, and optimizing deep learning models, computer vision systems, and large language models to enhance performance, scalability, and reliability.",
       color: "#3b82f6"
     },
     {
+      icon: Zap,
+      title: "Intelligent Automation",
+      description: "Skilled in designing automation frameworks, simulation environments, and multimodal data pipelines that accelerate validation and elevate model precision.",
+      color: "#8b5cf6"
+    },
+    {
       icon: TrendingUp,
-      title: "Business-Oriented Mindset",
-      description: "I focus on building products that not only work well but also solve real-world problems and help achieve business goals.",
+      title: "Cross-Functional Collaboration",
+      description: "Experienced in coordinating cross-functional and international teams, aligning research objectives with software deliverables, and driving multimillion-dollar revenue gains.",
       color: "#f59e0b"
     },
     {
       icon: Award,
-      title: "Fast Learner & Problem Solver",
-      description: "I am a quick learner who thrives on challenges and is adept at finding creative solutions to difficult problems.",
+      title: "Technical Rigor & Innovation",
+      description: "Brings technical rigor and creative problem-solving to complex challenges in AI systems, GenAI, and intelligent automation.",
       color: "#ec4899"
     }
   ];
@@ -95,11 +95,11 @@ export function HireMe() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="section-title font-heading relative inline-block">
-            Why Hire Me?
+            Research & Engineering Excellence
             <div className="absolute -z-10 bottom-0 left-0 right-0 h-3 bg-[rgba(var(--accent-rgb),0.2)] -rotate-1 translate-y-1"></div>
           </h2>
           <p className="section-description max-w-2xl mx-auto">
-            The unique value I bring to ML/AI projects, combining research expertise with production-grade engineering.
+            Combining PhD-level research expertise with production-grade engineering to deliver measurable impact in AI systems, machine learning, and intelligent automation.
           </p>
         </motion.div>
 

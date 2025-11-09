@@ -16,7 +16,7 @@ export function Projects() {
   const projects = [
     {
       title: "Transformer-based QA Chatbot",
-      description: "Fine-tuned Large Language Models (LLMs) with Retrieval-Augmented Generation (RAG) to assist engineers in querying validation reports, test logs, and KPIs through natural language. Improved traceability, reduced manual lookup time by 40%, and increased reasoning accuracy by 25%.",
+      description: "Built and deployed a Transformer-based QA chatbot leveraging fine-tuned Large Language Models (LLMs) and Retrieval-Augmented Generation (RAG) to assist engineers in querying validation reports, test logs, and KPIs through natural language. Improved traceability, reduced manual lookup time by 40%, and increased reasoning accuracy by 25%.",
       image: "/projects/qa-chatbot.png",
       tags: ["Python", "LLM", "RAG", "Fine-tuning", "Transformers"],
       category: "AI/ML",
@@ -26,7 +26,7 @@ export function Projects() {
     },
     {
       title: "Intelligent Validation & Reporting Automation",
-      description: "Data-driven frameworks that streamlined reporting and diagnostics workflows. Reduced test cycle time by 30% and increased diagnostic precision by 45% through automated validation systems.",
+      description: "Identified tooling and automation gaps within validation workflows and implemented data-driven frameworks to streamline reporting, reduce test cycle time by 30%, and increase diagnostic precision by 45%.",
       image: "/projects/validation-automation.png",
       tags: ["Python", "Automation", "MLOps", "Data Pipelines"],
       category: "Automation",
@@ -36,7 +36,7 @@ export function Projects() {
     },
     {
       title: "Traffic Sign Recognition – CV Pipeline",
-      description: "Enhanced image processing pipeline to improve perception accuracy and model robustness for image classification and object detection. Achieved a 47% improvement in perception accuracy for traffic sign recognition scenarios.",
+      description: "Enhanced image processing pipeline to improve perception accuracy and model robustness for image classification and object detection, leading to a 47% improvement in perception accuracy for traffic sign recognition scenarios.",
       image: "/projects/traffic-sign-recognition.png",
       tags: ["Python", "Computer Vision", "OpenCV", "CNN", "Object Detection"],
       category: "Computer Vision",
@@ -56,7 +56,7 @@ export function Projects() {
     },
     {
       title: "Personalized EV Recommendation System",
-      description: "Regression-based matching of user preferences with EV features, boosting satisfaction and conversions. Led to more accurate recommendations and higher user engagement.",
+      description: "Contributed to improving a personalized EV recommendation system using regression to match user preferences with EV features, boosting satisfaction and conversions, leading to more accurate recommendations and higher user engagement.",
       image: "/projects/ev-recommendation.png",
       tags: ["Python", "Machine Learning", "Regression", "Recommendation Systems"],
       category: "AI/ML",
@@ -66,7 +66,7 @@ export function Projects() {
     },
     {
       title: "PET Imaging Signal Enhancement",
-      description: "Applied deep learning–based denoising algorithms to improve image clarity and diagnostic precision. Enhanced PET imaging signal quality by 15%.",
+      description: "Applied deep learning–based denoising algorithms to improve image clarity and diagnostic precision, enhancing PET imaging signal quality by 15%.",
       image: "/projects/pet-imaging.png",
       tags: ["Python", "Deep Learning", "Image Denoising", "Medical Imaging"],
       category: "Computer Vision",
