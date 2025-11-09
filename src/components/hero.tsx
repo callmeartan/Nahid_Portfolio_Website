@@ -78,7 +78,7 @@ export function Hero() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 10 }}
                 transition={{ delay: 0.1, duration: 0.5 }}
-                className="inline-block text-sm font-medium px-3 py-1 rounded-full bg-[rgba(var(--accent-rgb),0.15)] text-[rgb(var(--accent-rgb))] mb-6 hover:bg-[rgba(var(--accent-rgb),0.2)] transition-colors"
+                className="inline-block text-sm font-medium px-3 py-1 rounded-full bg-cyan-50 text-cyan-600 mb-6 hover:bg-cyan-100 transition-colors border border-cyan-200/50 backdrop-blur-sm"
               >
                 Machine Learning Engineer | AI Systems | GenAI | Intelligent Automation
               </motion.span>
@@ -89,7 +89,7 @@ export function Hero() {
                   Nahid Nasiri
                 </span>
               </h1>
-              <p className="text-lg md:text-xl text-[rgb(var(--muted-rgb))] mb-10 max-w-xl leading-relaxed font-body text-pretty">
+              <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-xl leading-relaxed font-body text-pretty">
                 Machine Learning Engineer and PhD researcher building production-grade AI systems across computer vision, large language models, and intelligent automation. Experienced in developing, testing, and optimizing deep learning models, computer vision systems, and LLMs to enhance performance, scalability, and reliability.
               </p>
               
@@ -139,7 +139,7 @@ export function Hero() {
                 <Link 
                   href="https://www.linkedin.com/in/nahid-nasiri-17b5aa136/" 
                   target="_blank" 
-                  className="text-[rgb(var(--foreground-rgb))] hover:text-[rgb(var(--accent-rgb))] transition-all duration-300 hover:-translate-y-1"
+                  className="text-slate-700 hover:text-cyan-600 transition-all duration-300 hover:-translate-y-1"
                   aria-label="LinkedIn profile"
                   tabIndex={0}
                   onKeyDown={(e) => e.key === 'Enter' && window.open("https://www.linkedin.com/in/nahid-nasiri-17b5aa136/", "_blank")}
@@ -148,7 +148,7 @@ export function Hero() {
                 </Link>
                 <Link 
                   href="mailto:nnasiri@ucsc.edu" 
-                  className="text-[rgb(var(--foreground-rgb))] hover:text-[rgb(var(--accent-rgb))] transition-all duration-300 hover:-translate-y-1"
+                  className="text-slate-700 hover:text-cyan-600 transition-all duration-300 hover:-translate-y-1"
                   aria-label="Email"
                   tabIndex={0}
                   onKeyDown={(e) => e.key === 'Enter' && window.open("mailto:nnasiri@ucsc.edu", "_blank")}
@@ -167,23 +167,23 @@ export function Hero() {
             >
               <div className="relative mx-auto lg:mr-0 max-w-md aspect-square">
                 {/* Enhanced decorative elements */}
-                <div className="absolute -top-6 -right-6 w-24 h-24 border-t-2 border-r-2 border-[rgba(var(--accent-rgb),0.3)] rounded-tr-xl"></div>
-                <div className="absolute -bottom-6 -left-6 w-24 h-24 border-b-2 border-l-2 border-[rgba(var(--accent-rgb),0.3)] rounded-bl-xl"></div>
+                <div className="absolute -top-6 -right-6 w-24 h-24 border-t-2 border-r-2 border-cyan-300/50 rounded-tr-xl"></div>
+                <div className="absolute -bottom-6 -left-6 w-24 h-24 border-b-2 border-l-2 border-blue-300/50 rounded-bl-xl"></div>
                 
                 {/* Animated border with enhanced effect */}
                 <motion.div 
-                  className="absolute inset-0 border-2 border-[rgba(var(--accent-rgb),0.3)] rounded-2xl translate-x-4 translate-y-4"
+                  className="absolute inset-0 border-2 border-cyan-300/40 rounded-2xl translate-x-4 translate-y-4"
                   animate={{ 
-                    boxShadow: ["0 0 0 rgba(var(--accent-rgb), 0)", "0 0 20px rgba(var(--accent-rgb), 0.2)", "0 0 0 rgba(var(--accent-rgb), 0)"] 
+                    boxShadow: ["0 0 0 rgba(6, 182, 212, 0)", "0 0 20px rgba(6, 182, 212, 0.3)", "0 0 0 rgba(6, 182, 212, 0)"] 
                   }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 ></motion.div>
                 
                 {/* Image container with enhanced glow effect */}
-                <div className="w-full h-full relative rounded-2xl overflow-hidden shadow-xl">
+                <div className="w-full h-full relative rounded-2xl overflow-hidden shadow-xl bg-white/50 backdrop-blur-sm border border-white/50">
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-[rgba(var(--accent-rgb),0.15)] to-transparent opacity-80 z-10"
-                    animate={{ opacity: [0.4, 0.7, 0.4] }}
+                    className="absolute inset-0 bg-gradient-to-br from-cyan-100/30 to-blue-100/20 opacity-80 z-10"
+                    animate={{ opacity: [0.3, 0.6, 0.3] }}
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                   ></motion.div>
                   <Image 
@@ -214,9 +214,9 @@ export function Hero() {
           y: { delay: 1, duration: 2, repeat: Infinity, ease: "easeInOut" } 
         }}
       >
-        <span className="text-xs text-[rgba(var(--foreground-rgb),0.6)] mb-2 tracking-widest">SCROLL</span>
+        <span className="text-xs text-slate-500 mb-2 tracking-widest">SCROLL</span>
         <motion.div 
-          className="w-[1px] h-8 bg-gradient-to-b from-[rgba(var(--accent-rgb),0.6)] to-transparent"
+          className="w-[1px] h-8 bg-gradient-to-b from-cyan-500 to-transparent"
           animate={{ 
             scaleY: [1, 1.5, 1],
             opacity: [0.6, 1, 0.6] 

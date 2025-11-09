@@ -180,7 +180,7 @@ export function Contact() {
               }
             }}
           >
-            <div className="relative rounded-2xl overflow-hidden bg-[rgba(var(--card-rgb),0.5)] backdrop-blur-md p-8 border border-[rgba(var(--border-rgb),0.3)] shadow-lg">
+            <div className="relative rounded-2xl overflow-hidden bg-white/70 backdrop-blur-xl p-8 border border-white/40 shadow-lg">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[rgba(var(--accent-rgb),0.6)] to-transparent"></div>
               
               <h3 className="text-2xl font-bold mb-6 font-heading">Contact Information</h3>
@@ -236,7 +236,7 @@ export function Contact() {
               }
             }}
           >
-            <div className="bg-[rgba(var(--card-rgb),0.5)] backdrop-blur-md rounded-2xl border border-[rgba(var(--border-rgb),0.3)] shadow-lg overflow-hidden">
+            <div className="bg-white/70 backdrop-blur-xl rounded-2xl border border-white/40 shadow-lg overflow-hidden">
               <form ref={formRef} onSubmit={handleSubmit} className="p-8">
                 {/* Name input */}
                 <div className="mb-6">

@@ -134,17 +134,17 @@ export function Projects() {
   return (
     <section ref={sectionRef} id="projects" className="py-20 md:py-28 relative overflow-hidden">
       {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[rgba(var(--background-rgb),0.8)] via-[rgba(var(--background-alt-rgb),0.5)] to-[rgba(var(--background-rgb),1)] -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-cyan-50/30 to-blue-50/20 -z-10"></div>
       
       {/* Decorative elements */}
       <motion.div 
-        className="absolute top-40 left-20 w-96 h-96 bg-[rgba(var(--accent-light-rgb),0.08)] rounded-full blur-3xl -z-10"
+        className="absolute top-40 left-20 w-96 h-96 bg-cyan-200/20 rounded-full blur-3xl -z-10"
         initial={{ opacity: 0 }}
         animate={isVisible ? { opacity: 0.7 } : { opacity: 0 }}
         transition={{ duration: 1.5 }}
       />
       <motion.div 
-        className="absolute bottom-20 right-20 w-80 h-80 bg-[rgba(var(--accent-rgb),0.03)] rounded-full blur-3xl -z-10"
+        className="absolute bottom-20 right-20 w-80 h-80 bg-blue-200/15 rounded-full blur-3xl -z-10"
         initial={{ opacity: 0 }}
         animate={isVisible ? { opacity: 0.7 } : { opacity: 0 }}
         transition={{ duration: 1.5, delay: 0.3 }}
@@ -211,14 +211,13 @@ export function Projects() {
               onMouseLeave={() => setHoveredProject(null)}
               className="group h-full"
             >
-              <motion.div className="relative backdrop-blur-sm rounded-2xl overflow-hidden h-full flex flex-col hover:shadow-lg transition-all duration-300">
+              <motion.div className="relative backdrop-blur-xl rounded-2xl overflow-hidden h-full flex flex-col hover:shadow-lg transition-all duration-300 bg-white/70 border border-white/40 shadow-md">
                 {/* Animated border and gradient overlay */}
-                <div className="absolute inset-0 rounded-2xl border border-[rgba(var(--border-rgb),0.3)] z-0"></div>
-                <div className="absolute inset-0 bg-gradient-to-br from-[rgba(var(--background-alt-rgb),0.7)] to-[rgba(var(--background-rgb),0.9)] z-0"></div>
+                <div className="absolute inset-0 rounded-2xl border border-cyan-200/30 z-0"></div>
                 <motion.div 
-                  className="absolute inset-0 bg-gradient-to-tr from-transparent via-[rgba(var(--accent-rgb),0.03)] to-[rgba(var(--accent-rgb),0.08)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"
+                  className="absolute inset-0 bg-gradient-to-tr from-transparent via-cyan-50/30 to-blue-50/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"
                 ></motion.div>
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[rgba(var(--accent-rgb),0.1)] to-transparent -translate-y-12 translate-x-12 rounded-full blur-2xl z-0"></div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-cyan-200/20 to-transparent -translate-y-12 translate-x-12 rounded-full blur-2xl z-0"></div>
                 
                 <div className="relative h-48 overflow-hidden z-10">
                   <motion.div 
@@ -264,17 +263,17 @@ export function Projects() {
                       </motion.span>
                     )}
                   </motion.div>
-                  <motion.div 
+                    <motion.div 
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
-                    className="w-full h-full bg-gradient-to-br from-[rgba(var(--accent-light-rgb),0.3)] to-[rgba(var(--accent-rgb),0.1)] flex items-center justify-center relative overflow-hidden"
+                    className="w-full h-full bg-gradient-to-br from-cyan-100/40 to-blue-100/30 flex items-center justify-center relative overflow-hidden"
                   >
                     <motion.div
                       animate={{
                         scale: hoveredProject === project.title ? 1.1 : 1,
                         transition: { duration: 0.3 }
                       }}
-                      className="text-5xl font-bold text-[rgb(var(--accent-rgb))] opacity-70"
+                      className="text-5xl font-bold bg-gradient-to-br from-cyan-500 to-blue-500 bg-clip-text text-transparent opacity-70"
                     >
                       {project.title.substring(0, 1)}
                     </motion.div>
@@ -292,7 +291,7 @@ export function Projects() {
                   </motion.div>
                 </div>
                 <div className="p-7 flex-1 flex flex-col relative z-10">
-                  <h3 className="text-xl font-bold mb-3 font-heading group-hover:text-[rgb(var(--accent-rgb))] transition-colors">
+                  <h3 className="text-xl font-bold mb-3 font-heading group-hover:text-cyan-600 transition-colors text-slate-800">
                     {project.title}
                     {hoveredProject === project.title && 
                       <motion.span 
@@ -301,11 +300,11 @@ export function Projects() {
                         transition={{ duration: 0.2 }}
                         className="inline-block ml-1"
                       >
-                        <ArrowUpRight className="h-4 w-4 inline-block" />
+                        <ArrowUpRight className="h-4 w-4 inline-block text-cyan-600" />
                       </motion.span>
                     }
                   </h3>
-                  <p className="text-[rgb(var(--muted-rgb))] mb-4 text-sm flex-1">{project.description}</p>
+                  <p className="text-slate-600 mb-4 text-sm flex-1">{project.description}</p>
                   <motion.div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag, index) => (
                       <motion.span 
@@ -323,7 +322,7 @@ export function Projects() {
                     <Link 
                       href={project.live || project.github}
                       target="_blank" 
-                      className="flex items-center text-[rgb(var(--accent-rgb))] font-medium text-sm group-hover:underline"
+                      className="flex items-center text-cyan-600 font-medium text-sm group-hover:underline"
                       aria-label={`View details for ${project.title}`}
                       tabIndex={0}
                     >

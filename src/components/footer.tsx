@@ -70,7 +70,7 @@ export function Footer() {
   ];
   
   return (
-    <footer className="relative bg-[rgba(var(--background-alt-rgb),0.8)] border-t border-[rgba(var(--border-rgb),0.3)] py-16 overflow-hidden">
+    <footer className="relative bg-white/80 backdrop-blur-xl border-t border-cyan-200/30 py-16 overflow-hidden">
       {/* Gradient border top */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[rgba(var(--accent-rgb),0.6)] to-transparent"></div>
 
@@ -79,8 +79,8 @@ export function Footer() {
           {/* About */}
           <div>
             <Link href="#home" className="text-xl font-bold font-heading mb-6 inline-block relative group">
-              <span className="text-[rgb(var(--foreground-rgb))]">Nahid</span>
-              <span className="text-[rgb(var(--accent-rgb))]">.</span>
+              <span className="text-slate-900">Nahid</span>
+              <span className="text-cyan-500">.</span>
               <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-[rgba(var(--accent-rgb),0.5)] rounded-full group-hover:w-full transition-all duration-300"></span>
             </Link>
             <p className="text-[rgb(var(--muted-rgb))] mb-6 text-sm leading-relaxed">

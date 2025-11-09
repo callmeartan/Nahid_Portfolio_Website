@@ -1,72 +1,64 @@
 # Nahid Nasiri Portfolio - Deployment Guide
 
-## Overview
-This portfolio website has been customized for Nahid Nasiri, Machine Learning Engineer. All personal information, projects, and content have been updated to reflect Nahid's background and expertise.
+## 🚀 Firebase Deployment Guide
 
-## Completed Updates
+This guide will walk you through deploying Nahid Nasiri's portfolio website to Firebase Hosting with the new bright, glass-morphism design.
 
-### Personal Information
-- ✅ Name: Updated to "Nahid Nasiri" across all components
-- ✅ Email: Updated to nnasiri@ucsc.edu
-- ✅ LinkedIn: Updated to https://www.linkedin.com/in/nahid-nasiri-17b5aa136/
-- ✅ Location: Updated to San Jose, CA, USA
-- ✅ Title: Updated to "Machine Learning Engineer | AI Systems | GenAI | Intelligent Automation"
+---
 
-### Components Updated
-1. ✅ `src/app/layout.tsx` - Metadata and SEO
-2. ✅ `src/components/hero.tsx` - Hero section with bio
-3. ✅ `src/components/header.tsx` - Branding
-4. ✅ `src/components/contact.tsx` - Contact email
-5. ✅ `src/components/footer.tsx` - Footer information
-6. ✅ `src/components/skills.tsx` - ML/AI skills
-7. ✅ `src/components/projects.tsx` - ML/AI projects
-8. ✅ `src/components/education.tsx` - Academic background
-9. ✅ `src/components/hire-me.tsx` - Updated description
-10. ✅ `src/app/resume/page.tsx` - Resume page (partial - work experience updated)
+## Prerequisites
 
-### Remaining Tasks
+1. **Node.js** (v18 or higher)
+2. **npm** or **yarn**
+3. **Firebase CLI** installed globally
+4. **Firebase account** with a new project created
 
-#### Resume Page Updates Needed
-- Update Projects section with Nahid's ML/AI projects
-- Update Skills section with ML/AI technologies
-- Update Education section with complete academic history
+---
 
-#### Firebase Configuration
-1. Create a new Firebase project for Nahid Nasiri
-2. Update `src/lib/firebase.ts` with new Firebase config
-3. Create `.firebaserc` file with new project ID
-4. Update `firebase.json` if needed (should be fine as-is)
+## Step 1: Install Dependencies
 
-## Firebase Setup Instructions
-
-### Step 1: Create Firebase Project
-1. Go to [Firebase Console](https://console.firebase.google.com/)
-2. Click "Add project"
-3. Project name: `nahid-nasiri-portfolio` (or your preferred name)
-4. Follow the setup wizard
-
-### Step 2: Enable Firebase Hosting
-1. In Firebase Console, go to "Hosting"
-2. Click "Get started"
-3. Follow the setup instructions
-
-### Step 3: Update Firebase Configuration
-
-#### Update `src/lib/firebase.ts`:
-Replace the Firebase config object with your new project's configuration:
-```typescript
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "your-project.firebaseapp.com",
-  projectId: "your-project-id",
-  storageBucket: "your-project.firebasestorage.app",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
-  measurementId: "YOUR_MEASUREMENT_ID"
-};
+```bash
+npm install
 ```
 
-#### Create `.firebaserc`:
+---
+
+## Step 2: Create a New Firebase Project
+
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Click **"Add project"** or **"Create a project"**
+3. Enter project name: `nahid-nasiri-portfolio` (or your preferred name)
+4. Follow the setup wizard:
+   - Disable Google Analytics (optional)
+   - Click **"Create project"**
+5. Wait for project creation to complete
+
+---
+
+## Step 3: Initialize Firebase Hosting
+
+### Option A: Using Firebase CLI (Recommended)
+
+```bash
+# Login to Firebase (if not already logged in)
+firebase login
+
+# Initialize Firebase in your project
+firebase init hosting
+
+# When prompted:
+# - Select "Use an existing project"
+# - Choose your newly created project
+# - Public directory: `out` (this is where Next.js exports static files)
+# - Configure as single-page app: Yes
+# - Set up automatic builds: No (we'll build manually)
+# - Overwrite index.html: No (we're using Next.js)
+```
+
+### Option B: Manual Configuration
+
+If you've already initialized Firebase, update `.firebaserc`:
+
 ```json
 {
   "projects": {
@@ -75,62 +67,248 @@ const firebaseConfig = {
 }
 ```
 
-### Step 4: Build and Deploy
+Update `firebase.json`:
 
-1. Install dependencies (if not already done):
-```bash
-npm install
+```json
+{
+  "hosting": {
+    "public": "out",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "cleanUrls": true,
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
 ```
 
-2. Build the project:
+---
+
+## Step 4: Build the Project
+
+```bash
+# Build the Next.js project for static export
+npm run build:export
+
+# This will:
+# 1. Run `next build` to create optimized production build
+# 2. Export static files to the `out` directory
+```
+
+**Note:** The build process may take a few minutes. Ensure you see:
+- ✅ Build completed successfully
+- ✅ Static files exported to `out/` directory
+
+---
+
+## Step 5: Test Locally (Optional)
+
+```bash
+# Serve the built files locally
+npx serve out
+
+# Or use Firebase emulator
+firebase emulators:start --only hosting
+```
+
+Visit `http://localhost:3000` (or the port shown) to preview your site.
+
+---
+
+## Step 6: Deploy to Firebase
+
+```bash
+# Deploy to Firebase Hosting
+firebase deploy --only hosting
+```
+
+**What happens:**
+- Firebase CLI uploads files from `out/` directory
+- Your site becomes available at: `https://nahid-nasiri-portfolio.web.app`
+- Custom domain can be configured later in Firebase Console
+
+---
+
+## Step 7: Configure Custom Domain (Optional)
+
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Select your project
+3. Navigate to **Hosting** → **Add custom domain**
+4. Enter your domain (e.g., `nahidnasiri.com`)
+5. Follow DNS configuration instructions
+6. Wait for SSL certificate provisioning (usually 5-10 minutes)
+
+---
+
+## Step 8: Verify Deployment
+
+1. Visit your Firebase Hosting URL: `https://nahid-nasiri-portfolio.web.app`
+2. Check all pages:
+   - Home page
+   - Skills section
+   - Projects section
+   - Education section
+   - Contact form
+   - Resume page (`/resume`)
+
+---
+
+## 🎨 Design Features
+
+The new design includes:
+
+- **Bright, Futuristic Theme**: Clean white backgrounds with cyan/blue accents
+- **Glass-morphism Effects**: Semi-transparent panels with backdrop blur
+- **Smooth Animations**: Subtle hover effects and transitions
+- **Responsive Design**: Works perfectly on mobile, tablet, and desktop
+- **Modern Typography**: Inter, Outfit, and Space Grotesk fonts
+
+---
+
+## 🔧 Troubleshooting
+
+### Build Errors
+
+```bash
+# Clear Next.js cache
+rm -rf .next
+rm -rf out
+
+# Reinstall dependencies
+rm -rf node_modules
+npm install
+
+# Rebuild
+npm run build:export
+```
+
+### Deployment Errors
+
+- **Error: "Public directory not found"**
+  - Ensure `out` directory exists after build
+  - Check `firebase.json` has `"public": "out"`
+
+- **Error: "Firebase project not found"**
+  - Verify `.firebaserc` has correct project ID
+  - Run `firebase use --add` to add project
+
+### Styling Issues
+
+- If colors don't appear correctly:
+  - Clear browser cache
+  - Check `tailwind.config.js` and `globals.css` for color definitions
+  - Ensure CSS variables are properly set
+
+---
+
+## 📝 Environment Variables (if needed)
+
+If you need to add environment variables:
+
+1. Create `.env.local`:
+```env
+NEXT_PUBLIC_SITE_URL=https://nahidnasiri.com
+```
+
+2. Rebuild:
 ```bash
 npm run build:export
 ```
 
-3. Deploy to Firebase:
+3. Redeploy:
 ```bash
-firebase deploy
+firebase deploy --only hosting
 ```
 
-Or use the combined command:
-```bash
-npm run deploy
+---
+
+## 🔄 Continuous Deployment (Optional)
+
+### GitHub Actions Setup
+
+Create `.github/workflows/deploy.yml`:
+
+```yaml
+name: Deploy to Firebase
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm install
+      - run: npm run build:export
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          projectId: nahid-nasiri-portfolio
+          channelId: live
 ```
 
-## Environment Variables
+---
 
-If you need environment variables, create a `.env.local` file:
+## 📦 Project Structure
+
 ```
-NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
-# ... etc
+nahid-nasiri-portfolio/
+├── src/
+│   ├── app/              # Next.js app directory
+│   ├── components/       # React components
+│   └── lib/             # Utilities and services
+├── public/               # Static assets
+├── out/                  # Build output (generated)
+├── firebase.json         # Firebase configuration
+├── .firebaserc          # Firebase project settings
+├── tailwind.config.js   # Tailwind CSS configuration
+└── package.json         # Dependencies
 ```
 
-## Testing
+---
 
-Before deploying:
-1. Test locally: `npm run dev`
-2. Build test: `npm run build:export`
-3. Check the `out/` directory for static files
+## ✅ Post-Deployment Checklist
 
-## Notes
+- [ ] All pages load correctly
+- [ ] Images display properly
+- [ ] Contact form works (if integrated)
+- [ ] Mobile responsiveness verified
+- [ ] Performance tested (Lighthouse)
+- [ ] SEO metadata verified
+- [ ] Social media links work
+- [ ] Resume PDF accessible
 
-- The website is configured for static export (Next.js export mode)
-- All images should be in `/public/images/` directory
-- Profile image should be at `/public/images/profile.jpg`
-- Resume PDF should be at `/public/resume.pdf`
+---
 
-## Contact Form
+## 🆘 Support
 
-The contact form uses Firestore. Make sure to:
-1. Enable Firestore in Firebase Console
-2. Set up Firestore security rules in `firestore.rules`
-3. Create a `contact_messages` collection in Firestore
+For issues or questions:
+- Check Firebase Hosting [documentation](https://firebase.google.com/docs/hosting)
+- Review Next.js [deployment guide](https://nextjs.org/docs/deployment)
+- Check project README.md
 
-## Custom Domain (Optional)
+---
 
-To use a custom domain:
-1. In Firebase Hosting, click "Add custom domain"
-2. Follow the DNS configuration instructions
-3. Update `metadataBase` in `src/app/layout.tsx` if needed
+## 🎉 Success!
 
+Your portfolio is now live with a beautiful, modern glass-morphism design!
+
+**Live URL:** `https://nahid-nasiri-portfolio.web.app`
+
+---
+
+*Last updated: January 2025*

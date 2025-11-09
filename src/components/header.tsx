@@ -65,8 +65,8 @@ export function Header() {
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? "py-3 bg-[rgba(var(--background-rgb),0.85)] backdrop-blur-xl shadow-md border-b border-[rgba(var(--border-rgb),0.3)]" 
-          : "py-5 bg-transparent backdrop-blur-sm"
+          ? "py-3 bg-[rgba(255,255,255,0.8)] backdrop-blur-xl shadow-lg border-b border-[rgba(6,182,212,0.2)]" 
+          : "py-5 bg-[rgba(255,255,255,0.4)] backdrop-blur-md"
       }`}
     >
       <div className="container mx-auto">
@@ -84,7 +84,7 @@ export function Header() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="text-[rgb(var(--foreground-rgb))]"
+                className="text-slate-900"
               >
                 Nahid
               </motion.span>
@@ -92,11 +92,11 @@ export function Header() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-[rgb(var(--accent-rgb))]"
+              className="text-cyan-500"
             >
               .
             </motion.span>
-            <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-[rgba(var(--accent-rgb),0.8)] to-[rgba(var(--accent-rgb),0.2)] rounded-full group-hover:w-full transition-all duration-300"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full group-hover:w-full transition-all duration-300"></span>
           </Link>
           
           {/* Desktop Navigation */}
@@ -112,8 +112,8 @@ export function Header() {
                   href={item.href}
                   className={`px-4 py-2 font-medium relative group text-sm transition-colors rounded-md ${
                     activeSection === item.id 
-                      ? "text-[rgb(var(--accent-rgb))]" 
-                      : "text-[rgb(var(--foreground-rgb))] hover:text-[rgb(var(--accent-rgb))]"
+                      ? "text-cyan-600" 
+                      : "text-slate-700 hover:text-cyan-600"
                   }`}
                   onClick={closeMenu}
                   aria-current={activeSection === item.id ? "page" : undefined}
@@ -121,7 +121,7 @@ export function Header() {
                   onKeyDown={(e) => e.key === 'Enter' && closeMenu()}
                 >
                   {item.name}
-                  <span className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[rgb(var(--accent-rgb))] to-[rgba(var(--accent-rgb),0.5)] rounded-full transition-transform origin-left duration-300 ${
+                  <span className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full transition-transform origin-left duration-300 ${
                     activeSection === item.id ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                   }`}></span>
                 </Link>
@@ -174,7 +174,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-[rgba(var(--background-rgb),0.95)] backdrop-blur-lg flex flex-col overflow-y-auto"
+            className="fixed inset-0 z-40 bg-[rgba(255,255,255,0.95)] backdrop-blur-xl flex flex-col overflow-y-auto"
           >
             <div className="container mx-auto px-4 py-6">
               <div className="flex justify-between items-center mb-10">
@@ -185,9 +185,9 @@ export function Header() {
                   aria-label="Go to homepage"
                   tabIndex={isOpen ? 0 : -1}
                 >
-                  <span className="text-[rgb(var(--foreground-rgb))]">Nahid</span>
-                  <span className="text-[rgb(var(--accent-rgb))]">.</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[rgba(var(--accent-rgb),0.8)] to-[rgba(var(--accent-rgb),0.2)] rounded-full group-hover:w-full transition-all duration-300"></span>
+                  <span className="text-slate-900">Nahid</span>
+                  <span className="text-cyan-500">.</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full group-hover:w-full transition-all duration-300"></span>
                 </Link>
                 <motion.button
                   whileHover={{ rotate: 90 }}
@@ -214,8 +214,8 @@ export function Header() {
                       href={item.href}
                       className={`block py-3 px-4 text-lg font-medium rounded-lg transition-all ${
                         activeSection === item.id
-                          ? "bg-[rgba(var(--accent-rgb),0.1)] text-[rgb(var(--accent-rgb))]"
-                          : "text-[rgb(var(--foreground-rgb))] hover:bg-[rgba(var(--foreground-rgb),0.05)] hover:text-[rgb(var(--accent-rgb))]"
+                          ? "bg-cyan-50 text-cyan-600"
+                          : "text-slate-700 hover:bg-cyan-50 hover:text-cyan-600"
                       }`}
                       onClick={closeMenu}
                       aria-current={activeSection === item.id ? "page" : undefined}
@@ -234,7 +234,7 @@ export function Header() {
                 >
                   <Link
                     href="#contact"
-                    className="block w-full py-3 px-5 font-medium rounded-lg text-center transition-all bg-[rgb(var(--accent-rgb))] text-[rgb(var(--background-rgb))]"
+                    className="block w-full py-3 px-5 font-medium rounded-lg text-center transition-all bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg"
                     onClick={closeMenu}
                     tabIndex={isOpen ? 0 : -1}
                   >
@@ -248,7 +248,7 @@ export function Header() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7 }}
-                className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[rgba(var(--background-rgb),1)] to-transparent z-10 pointer-events-none"
+                className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none"
               />
             </div>
           </motion.div>

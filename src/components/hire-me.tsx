@@ -73,7 +73,7 @@ export function HireMe() {
 
   return (
     <section ref={ref} className="py-24 relative overflow-hidden" id="hire-me">
-      <div className="absolute inset-0 bg-gradient-to-b from-[rgba(var(--background-alt-rgb),0.5)] to-[rgba(var(--background-rgb),1)] -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-cyan-50/20 to-blue-50/10 -z-10"></div>
       <motion.div 
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 0.6 } : { opacity: 0 }}
@@ -119,12 +119,12 @@ export function HireMe() {
                 transition: { duration: 0.3, ease: "easeOut" }
               }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[rgba(var(--background-alt-rgb),0.7)] to-[rgba(var(--background-rgb),0.9)] z-0"></div>
-              <div className="absolute inset-0 rounded-2xl border border-[rgba(var(--border-rgb),0.3)] z-0"></div>
+              <div className="absolute inset-0 bg-white/70 backdrop-blur-xl z-0 rounded-2xl"></div>
+              <div className="absolute inset-0 rounded-2xl border border-white/40 z-0"></div>
               <motion.div 
-                className="absolute inset-0 bg-gradient-to-tr from-transparent via-[rgba(var(--accent-rgb),0.03)] to-[rgba(var(--accent-rgb),0.08)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"
+                className="absolute inset-0 bg-gradient-to-tr from-transparent via-cyan-50/30 to-blue-50/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0 rounded-2xl"
               ></motion.div>
-              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[rgba(var(--accent-rgb),0.1)] to-transparent -translate-y-12 translate-x-12 rounded-full blur-2xl z-0"></div>
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-cyan-200/20 to-transparent -translate-y-12 translate-x-12 rounded-full blur-2xl z-0"></div>
               
               <div className="p-7 relative z-10 h-full flex flex-col">
                 <div className="flex items-center mb-5">

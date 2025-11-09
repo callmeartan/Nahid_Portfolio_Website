@@ -170,20 +170,20 @@ export function Skills() {
   return (
     <section ref={ref} className="py-24 relative overflow-hidden" id="skills">
       {/* Background decorations */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[rgba(var(--background-rgb),1)] to-[rgba(var(--background-alt-rgb),0.5)] -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-cyan-50/20 to-blue-50/10 -z-10"></div>
       
       {/* Decorative elements */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 0.6 } : { opacity: 0 }}
         transition={{ duration: 1.5 }}
-        className="absolute top-40 right-0 w-64 h-64 bg-[rgba(var(--accent-light-rgb),0.15)] rounded-full blur-3xl -z-10"
+        className="absolute top-40 right-0 w-64 h-64 bg-cyan-200/20 rounded-full blur-3xl -z-10"
       ></motion.div>
       <motion.div 
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 0.4 } : { opacity: 0 }}
         transition={{ duration: 1.5, delay: 0.3 }}
-        className="absolute bottom-20 left-1/4 w-80 h-80 bg-[rgba(var(--accent-rgb),0.05)] rounded-full blur-3xl -z-10"
+        className="absolute bottom-20 left-1/4 w-80 h-80 bg-blue-200/15 rounded-full blur-3xl -z-10"
       ></motion.div>
       
       <div className="container mx-auto px-4">
@@ -249,7 +249,7 @@ export function Skills() {
           {skillGroups[activeTab].map((group) => (
             <motion.div
               key={group.name}
-              className="relative group overflow-hidden backdrop-blur-sm rounded-2xl"
+              className="relative group overflow-hidden backdrop-blur-xl rounded-2xl shadow-md"
               variants={itemVariants}
               whileHover={{ 
                 y: -5,
@@ -257,18 +257,18 @@ export function Skills() {
               }}
             >
               {/* Background gradient effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[rgba(var(--background-alt-rgb),0.7)] to-[rgba(var(--background-rgb),0.9)] z-0"></div>
+              <div className="absolute inset-0 bg-white/70 backdrop-blur-xl z-0 rounded-2xl"></div>
               
               {/* Animated border */}
-              <div className="absolute inset-0 rounded-2xl border border-[rgba(var(--border-rgb),0.3)] z-0"></div>
+              <div className="absolute inset-0 rounded-2xl border border-white/40 z-0"></div>
               
               {/* Hover effect */}
               <motion.div 
-                className="absolute inset-0 bg-gradient-to-tr from-transparent via-[rgba(var(--accent-rgb),0.03)] to-[rgba(var(--accent-rgb),0.08)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"
+                className="absolute inset-0 bg-gradient-to-tr from-transparent via-cyan-50/30 to-blue-50/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0 rounded-2xl"
               ></motion.div>
 
               {/* Corner accent */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[rgba(var(--accent-rgb),0.1)] to-transparent -translate-y-12 translate-x-12 rounded-full blur-2xl z-0"></div>
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-cyan-200/20 to-transparent -translate-y-12 translate-x-12 rounded-full blur-2xl z-0"></div>
               
               <div className="p-7 relative z-10">
                 <div className="flex items-center mb-5">
@@ -318,7 +318,7 @@ export function Skills() {
                             {skill.expertise}
                           </span>
                         </div>
-                        <p className="text-xs text-[rgb(var(--muted-rgb))] mt-0.5">
+                        <p className="text-xs text-slate-600 mt-0.5">
                           {skill.description}
                         </p>
                       </div>

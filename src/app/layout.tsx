@@ -29,8 +29,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: "#f0f0f0",
-  colorScheme: "dark"
+  themeColor: "#06b6d4",
+  colorScheme: "light"
 };
 
 export const metadata: Metadata = {
@@ -94,14 +94,14 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <meta name="theme-color" content="#f0f0f0" />
+        <meta name="theme-color" content="#06b6d4" />
       </head>
       <body className={`${inter.variable} ${outfit.variable} ${spaceGrotesk.variable} font-sans antialiased`}>
         <div className="min-h-screen flex flex-col relative">
-          {/* Background effects */}
-          <div className="fixed inset-0 z-[-1] bg-gradient-to-b from-background via-background to-[#111116] opacity-80"></div>
-          <div className="fixed inset-0 z-[-1] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[rgba(var(--accent-rgb),0.08)] via-transparent to-transparent"></div>
-          <div className="fixed inset-0 z-[-1] bg-[url('/grid.svg')] bg-repeat opacity-[0.015]"></div>
+          {/* Bright background effects with glass-morphism */}
+          <div className="fixed inset-0 z-[-1] bg-gradient-to-br from-white via-cyan-50 to-blue-50"></div>
+          <div className="fixed inset-0 z-[-1] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[rgba(6,182,212,0.1)] via-transparent to-transparent"></div>
+          <div className="fixed inset-0 z-[-1] bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-[rgba(96,165,250,0.08)] via-transparent to-transparent"></div>
           
           {children}
         </div>
