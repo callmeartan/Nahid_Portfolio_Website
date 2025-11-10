@@ -24,31 +24,6 @@ export function Header() {
     document.body.style.overflow = "";
   };
   
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-      
-      // Update active section based on scroll position
-      const sections = document.querySelectorAll('section[id]');
-      const scrollY = window.scrollY;
-      
-      sections.forEach(section => {
-        const sectionHeight = (section as HTMLElement).offsetHeight;
-        const sectionTop = (section as HTMLElement).offsetTop - 150;
-        const sectionId = section.getAttribute('id');
-        const scrollPosition = scrollY + window.innerHeight * 0.3;
-        
-        if (scrollPosition > sectionTop && scrollY <= sectionTop + sectionHeight) {
-          setActiveSection(sectionId || "home");
-        }
-      });
-    };
-    
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-  
   const navItems = [
     { name: "Home", href: "#home", id: "home" },
     { name: "Skills", href: "#skills", id: "skills" },
@@ -57,6 +32,107 @@ export function Header() {
     { name: "Education", href: "#education", id: "education" },
     { name: "Contact", href: "#contact", id: "contact" },
   ];
+  
+  useEffect(() => {
+    let ticking = false;
+    let scrollTimeout: ReturnType<typeof setTimeout>;
+    
+    const updateActiveSection = () => {
+      const sections = document.querySelectorAll('section[id]');
+      const scrollY = window.scrollY;
+      const headerOffset = 150; // Offset to account for header height
+      
+      // If we're at the very top, set home as active
+      if (scrollY < 100) {
+        setActiveSection("home");
+        return;
+      }
+      
+      // Use getBoundingClientRect for more accurate viewport-relative positions
+      const sectionsArray = Array.from(sections) as HTMLElement[];
+      const sectionsWithPositions = sectionsArray
+        .map(section => {
+          const rect = section.getBoundingClientRect();
+          return {
+            id: section.getAttribute('id') || "home",
+            top: rect.top + scrollY, // Convert to absolute position
+            viewportTop: rect.top // Position relative to viewport
+          };
+        })
+        .sort((a, b) => a.top - b.top);
+      
+      // Find the current section
+      // A section is active if its top is above the trigger point (headerOffset from top)
+      let currentSection = "home";
+      const triggerPoint = headerOffset;
+      
+      // Check sections from bottom to top
+      for (let i = sectionsWithPositions.length - 1; i >= 0; i--) {
+        const section = sectionsWithPositions[i];
+        // If section's top (relative to viewport) is above or at the trigger point
+        if (section.viewportTop <= triggerPoint) {
+          currentSection = section.id;
+          break;
+        }
+      }
+      
+      setActiveSection(currentSection);
+    };
+    
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+      
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateActiveSection();
+          ticking = false;
+        });
+        ticking = true;
+      }
+      
+      // Also update after scroll ends
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        updateActiveSection();
+      }, 150);
+    };
+    
+    // Handle hash changes (direct navigation to sections)
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1);
+      const validSectionIds = ["home", "skills", "hire-me", "projects", "education", "contact"];
+      if (hash && validSectionIds.includes(hash)) {
+        // Update immediately, then again after scroll settles
+        setActiveSection(hash);
+        setTimeout(() => {
+          updateActiveSection();
+        }, 500);
+      }
+    };
+    
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("hashchange", handleHashChange);
+    
+    // Initial check
+    updateActiveSection();
+    
+    return () => {
+      clearTimeout(scrollTimeout);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+  
+  const handleNavClick = (sectionId: string) => {
+    setActiveSection(sectionId);
+    closeMenu();
+    
+    // Prevent scroll handler from immediately overriding the click
+    // The scroll handler will take over after navigation completes
+    setTimeout(() => {
+      // This ensures scroll detection resumes after navigation
+    }, 600);
+  };
   
   return (
     <>
@@ -92,10 +168,14 @@ export function Header() {
           <Link 
             href="#home" 
                 className="text-xl font-bold font-secondary relative z-10 group"
-            onClick={closeMenu}
+            onClick={() => handleNavClick("home")}
             aria-label="Go to homepage"
             tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && closeMenu()}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleNavClick("home");
+              }
+            }}
           >
               <motion.span 
                 initial={{ opacity: 0 }}
@@ -137,10 +217,14 @@ export function Header() {
                       ? "text-cyan-600" 
                           : "text-slate-700 hover:text-cyan-500"
                   }`}
-                  onClick={closeMenu}
+                  onClick={() => handleNavClick(item.id)}
                   aria-current={activeSection === item.id ? "page" : undefined}
                   tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && closeMenu()}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      handleNavClick(item.id);
+                    }
+                  }}
                 >
                       <span className="relative z-10">{item.name}</span>
                       {/* Glowing hover effect */}
@@ -176,10 +260,14 @@ export function Header() {
                   <Link 
                     href="#contact" 
                     className="relative inline-flex items-center gap-2 px-5 py-2 font-medium font-secondary text-sm rounded-lg overflow-hidden group bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-[0_4px_20px_rgba(6,182,212,0.4)] hover:shadow-[0_6px_30px_rgba(6,182,212,0.6)] hover:from-cyan-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 active:scale-95 active:from-cyan-600 active:to-blue-600 transition-all duration-300"
-                    onClick={closeMenu}
+                    onClick={() => handleNavClick("contact")}
                     aria-label="Contact me"
                     tabIndex={0}
-                    onKeyDown={(e) => e.key === 'Enter' && closeMenu()}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleNavClick("contact");
+                      }
+                    }}
                   >
                     <span className="relative z-10 text-white">Let's Connect</span>
                     <ArrowRight className="h-3.5 w-3.5 relative z-10 text-white transition-transform group-hover:translate-x-1" />
@@ -239,7 +327,7 @@ export function Header() {
                 <Link 
                   href="#home" 
                     className="text-xl font-bold font-secondary relative group"
-                  onClick={closeMenu}
+                  onClick={() => handleNavClick("home")}
                   aria-label="Go to homepage"
                   tabIndex={isOpen ? 0 : -1}
                 >
@@ -274,7 +362,7 @@ export function Header() {
                             ? "text-cyan-600 bg-cyan-500/10 shadow-[0_0_20px_rgba(6,182,212,0.2)]"
                             : "text-slate-700 hover:text-cyan-600 hover:bg-white/20"
                       }`}
-                      onClick={closeMenu}
+                      onClick={() => handleNavClick(item.id)}
                       aria-current={activeSection === item.id ? "page" : undefined}
                       tabIndex={isOpen ? 0 : -1}
                     >
@@ -299,7 +387,7 @@ export function Header() {
                   <Link
                     href="#contact"
                       className="block w-full py-3 px-5 font-medium font-secondary text-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-[0_4px_20px_rgba(6,182,212,0.4)] hover:shadow-[0_6px_30px_rgba(6,182,212,0.6)] transition-all duration-300"
-                    onClick={closeMenu}
+                    onClick={() => handleNavClick("contact")}
                     tabIndex={isOpen ? 0 : -1}
                   >
                     Let's Connect
