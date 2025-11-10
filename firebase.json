@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "nahid-nasiri-portfolio",
     "public": "out",
     "ignore": [
       "firebase.json",

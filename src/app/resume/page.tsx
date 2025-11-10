@@ -3,24 +3,12 @@
 import * as React from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft, Award, Briefcase, Calendar, ChevronUp, Code, Download, ExternalLink, Github, GraduationCap, Linkedin, Mail, MapPin, Phone, Store } from "lucide-react";
+import { ArrowLeft, Award, Briefcase, Calendar, ChevronUp, Code, ExternalLink, Github, GraduationCap, Linkedin, Mail, MapPin, Phone, Store } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { Header } from "../../components/header";
 import { Footer } from "../../components/footer";
 
 export default function ResumePage() {
-  // Ensure file is downloaded when user directly visits the page
-  useEffect(() => {
-    // This check prevents the redirect if someone is just viewing the resume page
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("download") === "true") {
-      const link = document.createElement("a");
-      link.href = "/resume.pdf";
-      link.download = "Nahid_Nasiri_Resume.pdf";
-      link.click();
-    }
-  }, []);
-
   // For scroll animations and back-to-top button
   const [showScrollTop, setShowScrollTop] = useState(false);
   const { scrollY } = useScroll();
@@ -72,17 +60,6 @@ export default function ResumePage() {
             >
               <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
               <span>Back to Home</span>
-            </Link>
-
-            <Link
-              href="/resume.pdf"
-              target="_blank"
-              className="ml-auto flex items-center btn btn-primary !py-2 !px-4 !text-sm group"
-              aria-label="Download resume"
-            >
-              <span className="relative z-10">Download PDF</span>
-              <Download className="ml-2 h-4 w-4 relative z-10" />
-              <span className="absolute inset-0 bg-[rgba(var(--accent-rgb),0.9)] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
             </Link>
           </motion.div>
 

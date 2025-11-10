@@ -185,7 +185,7 @@ export function Hero() {
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                   ></motion.div>
                   <Image 
-                    src="/images/profile.jpg?v=1" 
+                    src="/nahid_profile.png" 
                     alt="Nahid Nasiri" 
                     fill 
                     className="object-cover"
