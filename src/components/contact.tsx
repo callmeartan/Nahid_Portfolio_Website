@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { Send, CheckCircle, AlertTriangle, Mail } from "lucide-react";
 import { motion, useInView } from "framer-motion";
+import { submitContactForm } from "@/lib/services/contact";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 type FieldError = { message: string } | null;
@@ -95,29 +96,37 @@ export function Contact() {
     
     setForm(prev => ({ ...prev, status: "submitting" }));
     
-    // Simulate API call with timeout
     try {
-      // Replace with your actual form submission logic
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      setForm({
-        name: "",
-        email: "",
-        message: "",
-        errors: {
-          name: null,
-          email: null,
-          message: null
-        },
-        status: "success"
+      // Submit to Firestore
+      const result = await submitContactForm({
+        name: form.name,
+        email: form.email,
+        message: form.message
       });
       
-      // Reset success state after 5 seconds
-      setTimeout(() => {
-        setForm(prev => ({ ...prev, status: "idle" }));
-      }, 5000);
+      if (result.success) {
+        setForm({
+          name: "",
+          email: "",
+          message: "",
+          errors: {
+            name: null,
+            email: null,
+            message: null
+          },
+          status: "success"
+        });
+        
+        // Reset success state after 5 seconds
+        setTimeout(() => {
+          setForm(prev => ({ ...prev, status: "idle" }));
+        }, 5000);
+      } else {
+        throw new Error(result.error as string);
+      }
       
     } catch (error) {
+      console.error("Contact form submission error:", error);
       setForm(prev => ({ ...prev, status: "error" }));
     }
   };
@@ -207,7 +216,7 @@ export function Contact() {
                   <div className="pl-16 py-4 relative">
                     <div className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-[1px] bg-[rgba(var(--border-rgb),0.5)]"></div>
                     <p className="text-[rgb(var(--muted-rgb))] text-sm">
-                      I'm currently open to freelance opportunities, collaborations, and full-time positions.
+                      I'm currently open to senior engineering roles, research collaborations, and strategic consulting opportunities.
                     </p>
                   </div>
                 </div>
