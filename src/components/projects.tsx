@@ -11,65 +11,65 @@ export function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   
-  const categories = ["All", "AI/ML", "Computer Vision", "Automation"];
+  const categories = ["All", "Multimodal AI", "NLP", "Computer Vision", "Automation"];
   
   const projects = [
     {
-      title: "Transformer-based QA Chatbot",
-      description: "Built and deployed a Transformer-based QA chatbot leveraging fine-tuned Large Language Models (LLMs) and Retrieval-Augmented Generation (RAG) to assist engineers in querying validation reports, test logs, and KPIs through natural language. Improved traceability, reduced manual lookup time by 40%, and increased reasoning accuracy by 25%.",
+      title: "Multimodal Damage Assessment",
+      description: "Built a multimodal damage assessment system for cost estimation and business impact modeling, including repair-vs-total-loss classification, cost regression, and part recommendation by collaborative filtering. Collaborated with the BottleRocket team to fine-tune a VLM for better visual understanding and accuracy.",
       image: "/projects/qa-chatbot.png",
-      tags: ["Python", "LLM", "RAG", "Fine-tuning", "Transformers"],
-      category: "AI/ML",
+      tags: ["Python", "Multimodal AI", "VLM", "Computer Vision", "Ranking"],
+      category: "Multimodal AI",
       github: "",
       live: "",
       featured: true
     },
     {
-      title: "Intelligent Validation & Reporting Automation",
-      description: "Identified tooling and automation gaps within validation workflows and implemented data-driven frameworks to streamline reporting, reduce test cycle time by 30%, and increase diagnostic precision by 45%.",
+      title: "Voice-Enabled RAG Chatbot",
+      description: "Developed a voice-enabled chatbot using LLMs and RAG over internal knowledge bases, reducing ticket volume by ~65% and response time by ~70%.",
       image: "/projects/validation-automation.png",
-      tags: ["Python", "Automation", "MLOps", "Data Pipelines"],
+      tags: ["Python", "LLM", "RAG", "Voice", "Internal Knowledge Base"],
+      category: "Multimodal AI",
+      github: "",
+      live: "",
+      featured: true
+    },
+    {
+      title: "BERTopic Feedback Analytics",
+      description: "Applied BERTopic to analyze survey and customer support feedback, reducing time-to-insight by 83% and helping leadership teams prioritize issues faster.",
+      image: "/projects/traffic-sign-recognition.png",
+      tags: ["Python", "NLP", "BERTopic", "Clustering", "Analytics"],
+      category: "NLP",
+      github: "",
+      live: "",
+      featured: true
+    },
+    {
+      title: "Resume Ranking Platform",
+      description: "Contributed to a resume ranking platform with low-quality filtering, duplicate detection, and similarity scoring using structured job representations, LLM-based inference, and prompt engineering.",
+      image: "/projects/adas-simulation.png",
+      tags: ["Python", "LLM", "Prompt Engineering", "Ranking", "Automation"],
       category: "Automation",
       github: "",
       live: "",
       featured: true
     },
     {
-      title: "Traffic Sign Recognition – CV Pipeline",
-      description: "Enhanced image processing pipeline to improve perception accuracy and model robustness for image classification and object detection, leading to a 47% improvement in perception accuracy for traffic sign recognition scenarios.",
-      image: "/projects/traffic-sign-recognition.png",
-      tags: ["Python", "Computer Vision", "OpenCV", "CNN", "Object Detection"],
-      category: "Computer Vision",
-      github: "",
-      live: "",
-      featured: true
-    },
-    {
-      title: "ADAS Simulation & Synthetic Data",
-      description: "Produced synthetic datasets using CARLA and Unity3D/Unreal Engine to replicate diverse driving scenarios and improve simulation-based reinforcement learning outcomes for Advanced Driver Assistance Systems.",
-      image: "/projects/adas-simulation.png",
-      tags: ["Python", "Simulation", "CARLA", "Unity3D", "Reinforcement Learning"],
-      category: "AI/ML",
-      github: "",
-      live: "",
-      featured: true
-    },
-    {
-      title: "Personalized EV Recommendation System",
-      description: "Contributed to improving a personalized EV recommendation system using regression to match user preferences with EV features, boosting satisfaction and conversions, leading to more accurate recommendations and higher user engagement.",
+      title: "ADAS Vision Pipeline",
+      description: "Enhanced computer vision pipelines for ADAS, improving accuracy by 47% through better perception modeling and validation workflows.",
       image: "/projects/ev-recommendation.png",
-      tags: ["Python", "Machine Learning", "Regression", "Recommendation Systems"],
-      category: "AI/ML",
+      tags: ["Python", "Computer Vision", "ADAS", "OpenCV", "Validation"],
+      category: "Computer Vision",
       github: "",
       live: "",
       featured: false
     },
     {
-      title: "PET Imaging Signal Enhancement",
-      description: "Applied deep learning–based denoising algorithms to improve image clarity and diagnostic precision, enhancing PET imaging signal quality by 15%.",
+      title: "Validation Workflow Automation",
+      description: "Contributed to automation frameworks that streamlined validation workflows, reducing test cycle time and improving diagnostic precision by 70%.",
       image: "/projects/pet-imaging.png",
-      tags: ["Python", "Deep Learning", "Image Denoising", "Medical Imaging"],
-      category: "Computer Vision",
+      tags: ["Python", "Automation", "Validation", "Data Pipelines", "CI/CD"],
+      category: "Automation",
       github: "",
       live: "",
       featured: false
@@ -159,7 +159,7 @@ export function Projects() {
         >
           <h2 className="section-title font-heading mb-4">My Projects</h2>
           <p className="section-description">
-            A showcase of my work across AI/ML systems, computer vision, and intelligent automation, highlighting my technical expertise in building production-grade machine learning solutions.
+            A showcase of work across multimodal AI, NLP, computer vision, and automation, with an emphasis on production-grade machine learning systems and measurable impact.
           </p>
         </motion.div>
         

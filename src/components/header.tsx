@@ -27,7 +27,7 @@ export function Header() {
   const navItems = [
     { name: "Home", href: "#home", id: "home" },
     { name: "Skills", href: "#skills", id: "skills" },
-    { name: "Research & Engineering", href: "#hire-me", id: "hire-me" },
+    { name: "Experience", href: "#hire-me", id: "hire-me" },
     { name: "Projects", href: "#projects", id: "projects" },
     { name: "Education", href: "#education", id: "education" },
     { name: "Contact", href: "#contact", id: "contact" },

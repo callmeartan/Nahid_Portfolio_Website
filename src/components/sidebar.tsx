@@ -8,10 +8,10 @@ type SidebarItem = {
 };
 
 const sidebarItems: SidebarItem[] = [
-  { title: "Machine Learning", href: "#", active: true },
-  { title: "Computer Visions", href: "#" },
-  { title: "Natural Language", href: "#" },
-  { title: "Reinforcement Learning", href: "#" },
+  { title: "LLMs & RAG", href: "#", active: true },
+  { title: "Multimodal AI", href: "#" },
+  { title: "Computer Vision", href: "#" },
+  { title: "Autonomous Systems", href: "#" },
 ];
 
 export function Sidebar() {
@@ -19,7 +19,7 @@ export function Sidebar() {
     <aside className="w-full md:w-72 py-12 px-6">
       <div className="mb-10">
         <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-          Aempore AI is a leading manufacturer of cutting-edge technology. We&apos;re passionate about advancing technology and making the impossible possible.
+          Machine Learning Engineer specializing in LLMs, multimodal AI, and autonomous systems.
         </p>
       </div>
       
@@ -50,7 +50,7 @@ export function Sidebar() {
       </nav>
       
       <div className="mt-auto pt-8">
-        <h3 className="text-sm font-medium mb-2">Connect with us</h3>
+        <h3 className="text-sm font-medium mb-2">Connect</h3>
       </div>
     </aside>
   );

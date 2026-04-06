@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Download, Github, Linkedin, Instagram, Store, Mail } from "lucide-react";
+import { ArrowRight, Download, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
@@ -80,7 +80,7 @@ export function Hero() {
                 transition={{ delay: 0.1, duration: 0.5 }}
                 className="inline-block text-sm font-medium px-3 py-1 rounded-full bg-cyan-50 text-cyan-600 mb-6 hover:bg-cyan-100 transition-colors border border-cyan-200/50 backdrop-blur-sm"
               >
-                Machine Learning Engineer | AI Systems | GenAI | Intelligent Automation
+                LLMs | Multimodal AI | Autonomous Systems
               </motion.span>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-display mb-6 leading-tight text-balance">
@@ -90,7 +90,7 @@ export function Hero() {
                 </span>
               </h1>
               <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-xl leading-relaxed font-body text-pretty">
-                Innovative and results-driven engineer specializing in AI, machine learning, and software engineering across autonomous systems and intelligent platforms. Experienced in developing, testing, and optimizing deep learning models, computer vision systems, and large language models (LLMs) to enhance performance, scalability, and reliability. Skilled in designing automation frameworks, simulation environments, and multimodal data pipelines that accelerate validation and elevate model precision.
+                ML Engineer specializing in LLMs, multimodal AI, and computer vision for autonomous systems. Experienced in building and deploying scalable ML models, RAG-based systems, and data pipelines that improve efficiency and decision-making. Proven impact in reducing operational costs, improving model accuracy, and accelerating validation workflows.
               </p>
               
               <motion.div 
@@ -119,21 +119,11 @@ export function Hero() {
               </motion.div>
               
               <motion.div 
-                className="flex items-center gap-6"
+                className="flex flex-wrap items-center gap-6"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: isVisible ? 1 : 0 }}
                 transition={{ delay: 0.5, duration: 0.7 }}
               >
-                <Link 
-                  href="https://github.com/nahidnasiri" 
-                  target="_blank" 
-                  className="text-slate-700 hover:text-cyan-600 focus:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 rounded-full p-1 transition-all duration-300 hover:-translate-y-1 active:scale-95"
-                  aria-label="GitHub profile"
-                  tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && window.open("https://github.com/nahidnasiri", "_blank")}
-                >
-                  <Github className="h-5 w-5" />
-                </Link>
                 <Link 
                   href="https://www.linkedin.com/in/nahid-nasiri-17b5aa136/" 
                   target="_blank" 
@@ -145,15 +135,54 @@ export function Hero() {
                   <Linkedin className="h-5 w-5" />
                 </Link>
                 <Link 
-                  href="mailto:nnasiri@ucsc.edu" 
+                  href="mailto:nahid.nasiri2006@gmail.com" 
                   className="text-slate-700 hover:text-cyan-600 focus:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 rounded-full p-1 transition-all duration-300 hover:-translate-y-1 active:scale-95"
                   aria-label="Email"
                   tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && window.open("mailto:nnasiri@ucsc.edu", "_blank")}
+                  onKeyDown={(e) => e.key === 'Enter' && window.open("mailto:nahid.nasiri2006@gmail.com", "_blank")}
                 >
                   <Mail className="h-5 w-5" />
                 </Link>
+                <Link 
+                  href="tel:+16282001735" 
+                  className="text-slate-700 hover:text-cyan-600 focus:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 rounded-full p-1 transition-all duration-300 hover:-translate-y-1 active:scale-95"
+                  aria-label="Phone"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && window.open("tel:+16282001735", "_blank")}
+                >
+                  <Phone className="h-5 w-5" />
+                </Link>
               </motion.div>
+
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-600">
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-cyan-600" />
+                  <span>San Jose, CA</span>
+                </div>
+                <a
+                  href="mailto:nahid.nasiri2006@gmail.com"
+                  className="flex items-center gap-2 hover:text-cyan-600 transition-colors"
+                >
+                  <Mail className="h-4 w-4 text-cyan-600" />
+                  <span>nahid.nasiri2006@gmail.com</span>
+                </a>
+                <a
+                  href="tel:+16282001735"
+                  className="flex items-center gap-2 hover:text-cyan-600 transition-colors"
+                >
+                  <Phone className="h-4 w-4 text-cyan-600" />
+                  <span>(628) 200-1735</span>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/nahid-nasiri-17b5aa136/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:text-cyan-600 transition-colors"
+                >
+                  <Linkedin className="h-4 w-4 text-cyan-600" />
+                  <span>LinkedIn profile</span>
+                </a>
+              </div>
             </motion.div>
             
             {/* Right image */}

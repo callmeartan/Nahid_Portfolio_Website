@@ -1,595 +1,343 @@
 "use client";
 
-import * as React from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft, Award, Briefcase, Calendar, ChevronUp, Code, ExternalLink, Github, GraduationCap, Linkedin, Mail, MapPin, Phone, Store } from "lucide-react";
-import { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { ArrowLeft, Award, Briefcase, Calendar, Code, GraduationCap, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { Header } from "../../components/header";
 import { Footer } from "../../components/footer";
 
+const contactItems = [
+  {
+    icon: Mail,
+    label: "Email",
+    href: "mailto:nahid.nasiri2006@gmail.com",
+    value: "nahid.nasiri2006@gmail.com",
+  },
+  {
+    icon: Phone,
+    label: "Phone",
+    href: "tel:+16282001735",
+    value: "(628) 200-1735",
+  },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/nahid-nasiri-17b5aa136/",
+    value: "linkedin.com/in/nahid-nasiri-17b5aa136",
+  },
+  {
+    icon: MapPin,
+    label: "Location",
+    href: "#",
+    value: "San Jose, CA",
+  },
+];
+
+const experience = [
+  {
+    company: "Tesla",
+    location: "CA",
+    title: "Machine Learning Engineer",
+    dates: "10/20/2025 - present",
+    bullets: [
+      "Developed multimodal systems and LLM-based applications, including damage assessment models, voice-enabled chatbots, and NLP pipelines, to improve operational efficiency, automate decision-making, and reduce time-to-insight.",
+      "Built a multimodal damage assessment system for cost estimation and business impact modeling, including repair-vs-total-loss classification, cost regression, and part recommendation by collaborative filtering. Collaborated with the BottleRocket team to fine-tune a VLM model for improved visual understanding and accuracy.",
+      "Developed a voice-enabled chatbot using LLMs and RAG over internal knowledge bases, reducing ticket volume by ~65% and response time by ~70%.",
+      "Applied BERTopic to analyze survey and customer support feedback, reducing time-to-insight by 83% and accelerating issue resolution across leadership teams.",
+      "Contributed to a resume ranking platform with low-quality filtering, duplicate detection, and similarity scoring using structured job representations, LLM-based inference, and prompt engineering.",
+    ],
+  },
+  {
+    company: "Audi of America",
+    location: "CA",
+    title: "Machine Learning Engineer",
+    dates: "4/10/2023 - 10/09/2025",
+    bullets: [
+      "Led development of chatbot systems, computer vision pipelines, and automation frameworks to improve validation efficiency, reduce manual effort, and enhance diagnostic accuracy in ADAS systems.",
+      "Built and deployed a Transformer-based QA chatbot using LLMs and RAG, reducing manual lookup time by 65% and improving validation consistency.",
+      "Enhanced computer vision pipelines for ADAS, improving accuracy by 47%.",
+      "Contributed to automation frameworks that streamlined validation workflows, reducing test cycle time and enhancing diagnostic precision by 70%.",
+    ],
+  },
+  {
+    company: "University of California, Santa Cruz",
+    location: "Santa Cruz, CA",
+    title: "Electrical and Computer Engineering Research/Teaching Assistant - PhD",
+    dates: "9/21/2019 - 5/5/2023",
+    bullets: [
+      "Developed deep learning models (CNN, LSTM) for multimodal sensor data to predict user behavior and cognitive states.",
+      "Improved ADHD diagnostic accuracy by 60% using fidgeting-based behavioral signals.",
+      "Reduced lab setup time by 40% by integrating real-time hardware-software data pipelines.",
+    ],
+  },
+  {
+    company: "Istanbul Technical University",
+    location: "Istanbul, Turkey",
+    title: "Research Assistant",
+    dates: "9/21/2017 - 8/1/2019",
+    bullets: [
+      "Developed decision-making algorithms for ADAS using reinforcement learning and simulation (CARLA, Unity3D).",
+      "Generated synthetic driving datasets to improve model robustness and training efficiency.",
+    ],
+  },
+  {
+    company: "Istanbul Sehir University",
+    location: "Istanbul, Turkey",
+    title: "Senior Software Developer and Project Lead",
+    dates: "9/21/2014 - 9/8/2017",
+    bullets: [
+      "Led AI development for the EU-funded ISG4 project focused on educational systems for children with special needs.",
+      "Built NLP and speech-to-text systems with real-time feedback to improve engagement and learning outcomes.",
+    ],
+  },
+  {
+    company: "Sharif University of Technology R&D Center / ATA Co.",
+    location: "Tehran, Iran",
+    title: "Computer Engineer, Software Developer",
+    dates: "3/10/2010 - 9/5/2014",
+    bullets: [
+      "Developed web-based software with SQL integration to improve system scalability and data management.",
+    ],
+  },
+];
+
+const skills = [
+  {
+    title: "Languages",
+    items: "Python, SQL, Git, Java, C++",
+  },
+  {
+    title: "ML / AI",
+    items: "PyTorch, TensorFlow, OpenCV, Hugging Face, Transformers, Foundation Models, Model Selection & Evaluation",
+  },
+  {
+    title: "LLMs",
+    items: "RAG, Fine-tuning, LangChain, NLP",
+  },
+  {
+    title: "Infra",
+    items: "AWS SageMaker, Kubernetes, Kubeflow, CI/CD",
+  },
+  {
+    title: "Systems",
+    items: "Distributed Training (DDP, FSDP), Data Pipelines",
+  },
+];
+
+const education = [
+  {
+    degree: "PhD in Electrical and Computer Engineering",
+    school: "University of California, Santa Cruz",
+    location: "Santa Cruz, CA",
+    dates: "2025",
+    note: "GPA: 4.0/4.0. Thesis: Extracting Implicit Features from Hand Fidgeting in ADHD Using Machine Learning.",
+  },
+  {
+    degree: "MSc in Computer Engineering",
+    school: "Istanbul Sehir University",
+    location: "Istanbul, Turkey",
+    dates: "2017",
+    note: "GPA: 3.86/4.0. Best Student Award.",
+  },
+  {
+    degree: "BSc in Computer Engineering",
+    school: "Iran University of Science and Technology",
+    location: "Tehran, Iran",
+    dates: "2010",
+    note: "2nd Best Senior Student.",
+  },
+];
+
+const honors = [
+  {
+    title: "University Fellowship Award",
+    dates: "2020 - 2021",
+    note: "Competitive academic fellowship awarded to less than 15% of applicants.",
+  },
+  {
+    title: "Graduate Research & Teaching Assistantship",
+    dates: "2021 - 2023",
+    note: "Merit-based assistantship granted to fewer than 20% of graduate candidates.",
+  },
+  {
+    title: "European Union Scholarship",
+    dates: "2014 - 2017",
+    note: "Awarded for ranking 1st among Computer Engineering students.",
+  },
+];
+
 export default function ResumePage() {
-  // For scroll animations and back-to-top button
-  const [showScrollTop, setShowScrollTop] = useState(false);
-  const { scrollY } = useScroll();
-  const mainRef = useRef(null);
-
-  // Transform values for parallax effects
-  const headerOpacity = useTransform(scrollY, [0, 100], [1, 0.9]);
-  const headerY = useTransform(scrollY, [0, 100], [0, -10]);
-
-  // Check scroll position to show/hide back-to-top button
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 500) {
-        setShowScrollTop(true);
-      }
-      else {
-        setShowScrollTop(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Function to scroll to top smoothly
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
   return (
-    <div className="flex flex-col min-h-screen relative bg-[rgb(var(--background-rgb))]">
+    <div className="flex min-h-screen flex-col bg-[rgb(var(--background-rgb))]">
       <Header />
 
-      <main ref={mainRef} className="flex-grow pt-32 pb-20">
+      <main className="flex-1 pt-32 pb-20">
         <div className="container mx-auto px-6">
-          <motion.div
-            className="mb-8 flex items-center space-x-2"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-          >
+          <div className="mb-8">
             <Link
               href="/#home"
-              className="flex items-center text-sm font-medium text-[rgb(var(--muted-rgb))] hover:text-[rgb(var(--accent-rgb))] transition-colors group"
-              aria-label="Back to home"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[rgb(var(--muted-rgb))] transition-colors hover:text-[rgb(var(--accent-rgb))]"
             >
-              <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
-              <span>Back to Home</span>
+              <ArrowLeft className="h-4 w-4" />
+              Back to Home
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="card p-8 md:p-12 max-w-5xl mx-auto relative overflow-hidden backdrop-blur-sm bg-[rgba(var(--card-rgb),0.8)]"
-            initial={{ opacity: 0, y: 20 }}
+          <motion.section
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.45 }}
+            className="card mx-auto max-w-6xl overflow-hidden p-0"
           >
-            {/* Decorative elements */}
-            <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full bg-[rgba(var(--accent-rgb),0.03)] blur-xl"></div>
-            <div className="absolute -bottom-32 -left-32 w-64 h-64 rounded-full bg-[rgba(var(--accent-rgb),0.03)] blur-xl"></div>
-
-            {/* Header */}
-            <motion.div
-              className="border-b border-[rgba(var(--border-rgb),0.7)] pb-8 mb-8 relative"
-              style={{ opacity: headerOpacity, y: headerY }}
-            >
-              <motion.div
-                className="absolute top-0 left-0 w-20 h-1 bg-gradient-to-r from-[rgba(var(--accent-rgb),0.7)] to-transparent"
-                initial={{ width: 0 }}
-                animate={{ width: "5rem" }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              />
-
-              <motion.h1
-                className="text-4xl md:text-5xl font-bold mb-2 relative inline-block"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.2 }}
-              >
-                Nahid Nasiri
-                <motion.span
-                  className="absolute -bottom-2 left-0 h-[3px] bg-[rgb(var(--accent-rgb)))]"
-                  initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                />
-              </motion.h1>
-
-              <motion.h2
-                className="text-xl md:text-2xl text-[rgb(var(--accent-rgb)))] font-medium mb-6"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.3 }}
-              >
-                Machine Learning Engineer | AI Systems | GenAI | Intelligent Automation
-              </motion.h2>
-
-              <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 gap-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 0.4 }}
-              >
-                <motion.div
-                  className="flex items-center text-[rgb(var(--muted-rgb)))] group"
-                  whileHover={{ x: 5 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <div className="bg-[rgba(var(--accent-rgb),0.1)] w-8 h-8 rounded-full flex items-center justify-center mr-3">
-                    <Mail className="h-4 w-4 transition-colors text-[rgb(var(--accent-rgb)))]" />
-                  </div>
-                  <a
-                    href="mailto:nnasiri@ucsc.edu"
-                    className="hover:text-[rgb(var(--accent-rgb)))] transition-colors"
-                  >
-                    nnasiri@ucsc.edu
-                  </a>
-                </motion.div>
-
-                <motion.div
-                  className="flex items-center text-[rgb(var(--muted-rgb)))] group"
-                  whileHover={{ x: 5 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <div className="bg-[rgba(var(--accent-rgb),0.1)] w-8 h-8 rounded-full flex items-center justify-center mr-3">
-                    <Linkedin className="h-4 w-4 transition-colors text-[rgb(var(--accent-rgb)))]" />
-                  </div>
-                  <a
-                    href="https://www.linkedin.com/in/nahid-nasiri-17b5aa136/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-[rgb(var(--accent-rgb)))] transition-colors"
-                  >
-                    linkedin.com/in/nahid-nasiri-17b5aa136
-                  </a>
-                </motion.div>
-
-                <motion.div
-                  className="flex items-center text-[rgb(var(--muted-rgb)))] group"
-                  whileHover={{ x: 5 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <div className="bg-[rgba(var(--accent-rgb),0.1)] w-8 h-8 rounded-full flex items-center justify-center mr-3">
-                    <MapPin className="h-4 w-4 transition-colors text-[rgb(var(--accent-rgb)))]" />
-                  </div>
-                  <span>San Jose, CA, USA</span>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-
-            {/* Profile Summary */}
-            <motion.div
-              className="mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <p className="text-[rgb(var(--foreground-rgb)))] leading-relaxed text-lg relative">
-                <span className="block w-1.5 h-1.5 rounded-full bg-[rgb(var(--accent-rgb)))] absolute -left-4 top-3"></span>
-                Innovative and results-driven engineer specializing in AI, machine learning, and software engineering across autonomous systems and intelligent platforms. Experienced in developing, testing, and optimizing deep learning models, computer vision systems, and large language models (LLMs) to enhance performance, scalability, and reliability. Skilled in designing automation frameworks, simulation environments, and multimodal data pipelines that accelerate validation and elevate model precision. Brings a unique blend of technical rigor and creative problem-solving—bridging applied research and real-world deployment to advance the next generation of AI-enabled technologies.
-              </p>
-            </motion.div>
-
-            {/* Work Experience */}
-            <motion.section
-              className="mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <div className="flex items-center mb-6">
-                <div className="h-8 w-8 rounded-lg bg-[rgba(var(--accent-rgb),0.1)] flex items-center justify-center mr-3 text-[rgb(var(--accent-rgb)))]">
-                  <Briefcase className="h-4 w-4" />
+            <div className="border-b border-[rgba(var(--border-rgb),0.6)] bg-white/70 px-6 py-8 md:px-10">
+              <div className="flex flex-col gap-6">
+                <div>
+                  <h1 className="text-4xl md:text-5xl font-bold">Nahid Nasiri</h1>
+                  <p className="mt-3 text-xl text-[rgb(var(--accent-rgb))] font-medium">
+                    Machine Learning Engineer | LLMs | Multimodal AI | Autonomous Systems
+                  </p>
+                  <p className="mt-5 max-w-4xl text-[rgb(var(--foreground-rgb))] leading-relaxed">
+                    ML Engineer specializing in LLMs, multimodal AI, and computer vision for autonomous systems. Experienced in building and deploying scalable ML models, RAG-based systems, and data pipelines that improve efficiency and decision-making. Proven impact in reducing operational costs, improving model accuracy, and accelerating validation workflows.
+                  </p>
                 </div>
-                <h2 className="section-title text-[rgb(var(--accent-rgb)))]">Work Experience</h2>
-              </div>
 
-              <motion.div
-                className="mb-8 card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] !shadow-none p-0 overflow-hidden group relative"
-                whileHover={{ y: -5 }}
-                transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              >
-                <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
-                <div className="p-6 pl-8">
-                  <div className="flex flex-wrap items-center justify-between mb-2">
-                    <h3 className="text-xl font-semibold group-hover:text-[rgb(var(--accent-rgb)))] transition-colors">Machine Learning Engineer</h3>
-                    <span className="badge flex items-center">
-                      <Calendar className="h-3 w-3 mr-1.5" />
-                      May 2023 - Apr 2025
-                    </span>
-                  </div>
-                  <div className="text-[rgb(var(--muted-rgb)))] mb-4">Akkodis, Inc. (AUDI OF AMERICA) | San Jose, CA</div>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  {contactItems.map((item) => {
+                    const Icon = item.icon;
+                    const content = (
+                      <>
+                        <Icon className="h-4 w-4 text-[rgb(var(--accent-rgb))]" />
+                        <span className="break-all">{item.value}</span>
+                      </>
+                    );
 
-                  <ul className="space-y-3">
-                    <li className="relative pl-6 before:absolute before:left-0 before:top-2.5 before:h-1.5 before:w-1.5 before:rounded-full before:bg-[rgb(var(--accent-rgb)))]">
-                      Built and deployed a <span className="font-medium">Transformer-based QA chatbot</span> leveraging fine-tuned Large Language Models (LLMs) and Retrieval-Augmented Generation (RAG) to assist engineers in querying validation reports, test logs, and KPIs through natural language. Improved traceability, reduced manual lookup time by <span className="font-medium">40%</span>, and increased reasoning accuracy by <span className="font-medium">25%</span>
-                    </li>
-                    <li className="relative pl-6 before:absolute before:left-0 before:top-2.5 before:h-1.5 before:w-1.5 before:rounded-full before:bg-[rgb(var(--accent-rgb)))]">
-                      Identified tooling and automation gaps within validation workflows and implemented data-driven frameworks to streamline reporting, reduce test cycle time by <span className="font-medium">30%</span>, and increase diagnostic precision by <span className="font-medium">45%</span>
-                    </li>
-                    <li className="relative pl-6 before:absolute before:left-0 before:top-2.5 before:h-1.5 before:w-1.5 before:rounded-full before:bg-[rgb(var(--accent-rgb)))]">
-                      Enhanced image processing pipeline to improve perception accuracy and model robustness for image classification and object detection, leading to a <span className="font-medium">47% improvement</span> in perception accuracy for traffic sign recognition scenarios
-                    </li>
-                    <li className="relative pl-6 before:absolute before:left-0 before:top-2.5 before:h-1.5 before:w-1.5 before:rounded-full before:bg-[rgb(var(--accent-rgb)))]">
-                      Contributed to improving a personalized EV recommendation system using regression to match user preferences with EV features, boosting satisfaction and conversions
-                    </li>
-                  </ul>
+                    if (item.label === "Location") {
+                      return (
+                        <div
+                          key={item.label}
+                          className="flex items-center gap-3 rounded-xl border border-[rgba(var(--border-rgb),0.6)] bg-white/60 px-4 py-3 text-sm text-[rgb(var(--foreground-rgb))]"
+                        >
+                          {content}
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        target={item.label === "LinkedIn" ? "_blank" : undefined}
+                        rel={item.label === "LinkedIn" ? "noopener noreferrer" : undefined}
+                        className="flex items-center gap-3 rounded-xl border border-[rgba(var(--border-rgb),0.6)] bg-white/60 px-4 py-3 text-sm text-[rgb(var(--foreground-rgb))] transition-all hover:border-[rgba(var(--accent-rgb),0.35)] hover:bg-white"
+                      >
+                        {content}
+                      </a>
+                    );
+                  })}
                 </div>
-              </motion.div>
-
-              <motion.div
-                className="mb-8 card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] !shadow-none p-0 overflow-hidden group relative"
-                whileHover={{ y: -5 }}
-                transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              >
-                <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
-                <div className="p-6 pl-8">
-                  <div className="flex flex-wrap items-center justify-between mb-2">
-                    <h3 className="text-xl font-semibold group-hover:text-[rgb(var(--accent-rgb)))] transition-colors">Electrical and Computer Engineering Research/Teaching Assistant – PhD</h3>
-                    <span className="badge flex items-center">
-                      <Calendar className="h-3 w-3 mr-1.5" />
-                      Sep 2020 - Jun 2025
-                    </span>
-                  </div>
-                  <div className="text-[rgb(var(--muted-rgb)))] mb-4">University of California, Santa Cruz | Santa Cruz, CA</div>
-
-                  <ul className="space-y-3">
-                    <li className="relative pl-6 before:absolute before:left-0 before:top-2.5 before:h-1.5 before:w-1.5 before:rounded-full before:bg-[rgb(var(--accent-rgb)))]">
-                      Applied deep learning–based denoising algorithms to improve image clarity and diagnostic precision, enhancing <span className="font-medium">PET imaging signal quality by 15%</span>
-                    </li>
-                    <li className="relative pl-6 before:absolute before:left-0 before:top-2.5 before:h-1.5 before:w-1.5 before:rounded-full before:bg-[rgb(var(--accent-rgb)))]">
-                      Unified hardware-software ecosystems for real-time sensor data acquisition, <span className="font-medium">reducing laboratory setup time by 40%</span>
-                    </li>
-                    <li className="relative pl-6 before:absolute before:left-0 before:top-2.5 before:h-1.5 before:w-1.5 before:rounded-full before:bg-[rgb(var(--accent-rgb)))]">
-                      Leveraged analysis of fidgeting behaviors as a complementary feature to traditional psychological assessments, <span className="font-medium">improving ADHD diagnostic accuracy by 35%</span>
-                    </li>
-                  </ul>
-                </div>
-              </motion.div>
-            </motion.section>
-
-            {/* Projects */}
-            <motion.section
-              className="mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-            >
-              <div className="flex items-center mb-6">
-                <div className="h-8 w-8 rounded-lg bg-[rgba(var(--accent-rgb),0.1)] flex items-center justify-center mr-3 text-[rgb(var(--accent-rgb)))]">
-                  <Code className="h-4 w-4" />
-                </div>
-                <h2 className="section-title text-[rgb(var(--accent-rgb)))]">Projects</h2>
               </div>
+            </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <motion.div
-                  className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                >
-                  <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
-                  <div className="p-6 pl-8">
-                    <h3 className="text-xl font-semibold group-hover:text-[rgb(var(--accent-rgb)))] transition-colors mb-3">Transformer-based QA Chatbot</h3>
-                    <p className="mb-4 text-[rgb(var(--muted-rgb)))]">
-                      Built and deployed a Transformer-based QA chatbot leveraging fine-tuned Large Language Models (LLMs) and Retrieval-Augmented Generation (RAG) to assist engineers in querying validation reports, test logs, and KPIs through natural language. Improved traceability, reduced manual lookup time by 40%, and increased reasoning accuracy by 25%.
-                    </p>
-                    </div>
-                </motion.div>
-
-                <motion.div
-                  className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                >
-                  <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
-                  <div className="p-6 pl-8">
-                    <h3 className="text-xl font-semibold group-hover:text-[rgb(var(--accent-rgb)))] transition-colors mb-3">Intelligent Validation & Reporting Automation</h3>
-                    <p className="mb-4 text-[rgb(var(--muted-rgb)))]">
-                      Identified tooling and automation gaps within validation workflows and implemented data-driven frameworks to streamline reporting, reduce test cycle time by 30%, and increase diagnostic precision by 45%.
-                    </p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                >
-                  <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
-                  <div className="p-6 pl-8">
-                    <h3 className="text-xl font-semibold group-hover:text-[rgb(var(--accent-rgb)))] transition-colors mb-3">Traffic Sign Recognition – CV Pipeline</h3>
-                    <p className="mb-4 text-[rgb(var(--muted-rgb)))]">
-                      Enhanced image processing pipeline to improve perception accuracy and model robustness for image classification and object detection, leading to a 47% improvement in perception accuracy for traffic sign recognition scenarios.
-                    </p>
-                    </div>
-                </motion.div>
-
-                <motion.div
-                  className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                >
-                  <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
-                  <div className="p-6 pl-8">
-                    <h3 className="text-xl font-semibold group-hover:text-[rgb(var(--accent-rgb)))] transition-colors mb-3">ADAS Simulation & Synthetic Data</h3>
-                    <p className="mb-4 text-[rgb(var(--muted-rgb)))]">
-                      Produced synthetic datasets using CARLA and Unity3D/Unreal Engine to replicate diverse driving scenarios and improve simulation-based reinforcement learning outcomes for Advanced Driver Assistance Systems.
-                    </p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                >
-                  <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
-                  <div className="p-6 pl-8">
-                    <h3 className="text-xl font-semibold group-hover:text-[rgb(var(--accent-rgb)))] transition-colors mb-3">Personalized EV Recommendation System</h3>
-                    <p className="mb-4 text-[rgb(var(--muted-rgb)))]">
-                      Contributed to improving a personalized EV recommendation system using regression to match user preferences with EV features, boosting satisfaction and conversions, leading to more accurate recommendations and higher user engagement.
-                    </p>
-                    </div>
-                </motion.div>
-
-                <motion.div
-                  className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                >
-                  <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
-                  <div className="p-6 pl-8">
-                    <h3 className="text-xl font-semibold group-hover:text-[rgb(var(--accent-rgb)))] transition-colors mb-3">PET Imaging Signal Enhancement</h3>
-                    <p className="mb-4 text-[rgb(var(--muted-rgb)))]">
-                      Applied deep learning–based denoising algorithms to improve image clarity and diagnostic precision, enhancing PET imaging signal quality by 15%.
-                    </p>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.section>
-
-            {/* Skills */}
-            <motion.section
-              className="mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              <div className="flex items-center mb-6">
-                <div className="h-8 w-8 rounded-lg bg-[rgba(var(--accent-rgb),0.1)] flex items-center justify-center mr-3 text-[rgb(var(--accent-rgb)))]">
-                  <Code className="h-4 w-4" />
-                </div>
-                <h2 className="section-title text-[rgb(var(--accent-rgb)))]">Core Skills</h2>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <motion.div
-                  className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                >
-                  <div className="p-5">
-                    <h3 className="font-semibold mb-2 text-[rgb(var(--accent-rgb)))]">Languages & Tools</h3>
-                    <p className="text-[rgb(var(--muted-rgb)))]">Python, Java, C++, MATLAB, SQL, Git, Jupyter, TensorFlow, PyTorch, OpenCV</p>
-                  </div>
-                  <div className="h-1 w-full bg-gradient-to-r from-[rgba(var(--accent-rgb),0.7)] to-transparent"></div>
-                </motion.div>
-
-                <motion.div
-                  className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                >
-                  <div className="p-5">
-                    <h3 className="font-semibold mb-2 text-[rgb(var(--accent-rgb)))]">Areas of Expertise</h3>
-                    <p className="text-[rgb(var(--muted-rgb)))]">Machine Learning & Deep Learning (CNN, LSTM, RNN), Generative AI & LLMs (Fine-Tuning, RAG), Model Training & Optimization, A/B Testing, Simulation & Data Pipelines, Computer Vision (Object Detection, Semantic Segmentation)</p>
-                  </div>
-                  <div className="h-1 w-full bg-gradient-to-r from-[rgba(var(--accent-rgb),0.7)] to-transparent"></div>
-                </motion.div>
-
-                <motion.div
-                  className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                >
-                  <div className="p-5">
-                    <h3 className="font-semibold mb-2 text-[rgb(var(--accent-rgb)))]">Infrastructure & Automation</h3>
-                    <p className="text-[rgb(var(--muted-rgb)))]">A/B Testing, CI/CD, MLOps, Automated Reporting Systems, Remote Test Stations, Data Pipelines</p>
-                  </div>
-                  <div className="h-1 w-full bg-gradient-to-r from-[rgba(var(--accent-rgb),0.7)] to-transparent"></div>
-                </motion.div>
-
-                <motion.div
-                  className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative md:col-span-3"
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                >
-                  <div className="p-5">
-                    <h3 className="font-semibold mb-2 text-[rgb(var(--accent-rgb)))]">Cloud & Platforms</h3>
-                    <p className="text-[rgb(var(--muted-rgb)))]">AWS SageMaker, Azure, Google Cloud Platform, Kubernetes, Distributed Systems (DDP, FSDP)</p>
-                  </div>
-                  <div className="h-1 w-full bg-gradient-to-r from-[rgba(var(--accent-rgb),0.7)] to-transparent"></div>
-                </motion.div>
-              </div>
-            </motion.section>
-
-            {/* Education and Honors */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
-              <motion.section
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.7 }}
-              >
-                <div className="flex items-center mb-6">
-                  <div className="h-8 w-8 rounded-lg bg-[rgba(var(--accent-rgb),0.1)] flex items-center justify-center mr-3 text-[rgb(var(--accent-rgb)))]">
-                    <GraduationCap className="h-4 w-4" />
-                  </div>
-                  <h2 className="section-title text-[rgb(var(--accent-rgb)))]">Education</h2>
+            <div className="space-y-12 px-6 py-10 md:px-10">
+              <section>
+                <div className="mb-6 flex items-center gap-3">
+                  <Briefcase className="h-5 w-5 text-[rgb(var(--accent-rgb))]" />
+                  <h2 className="text-2xl font-bold">Career Experience</h2>
                 </div>
 
                 <div className="space-y-6">
-                <motion.div
-                  className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                >
-                  <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
-                  <div className="p-6 pl-8">
-                    <div className="flex flex-wrap items-center justify-between mb-2">
-                        <h3 className="text-xl font-semibold group-hover:text-[rgb(var(--accent-rgb)))] transition-colors">PhD in Electrical and Computer Engineering</h3>
-                      <span className="badge flex items-center">
-                        <Calendar className="h-3 w-3 mr-1.5" />
-                          2025
-                      </span>
-                    </div>
-                      <p className="text-[rgb(var(--muted-rgb)))] mb-2">University of California, Santa Cruz</p>
-                      <p className="text-sm text-[rgb(var(--muted-rgb)))]">GPA: 4.0/4.0 | Thesis: "Extracting Implicit Features from Hand Fidgeting in ADHD Using Machine Learning"</p>
-                  </div>
-                </motion.div>
-
-                  <motion.div
-                    className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                    whileHover={{ y: -5 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                >
-                    <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
-                    <div className="p-6 pl-8">
-                      <div className="flex flex-wrap items-center justify-between mb-2">
-                        <h3 className="text-xl font-semibold group-hover:text-[rgb(var(--accent-rgb)))] transition-colors">PhD in Computer Engineering (Transferred)</h3>
-                        <span className="badge flex items-center">
-                          <Calendar className="h-3 w-3 mr-1.5" />
-                          2020
+                  {experience.map((job) => (
+                    <article key={`${job.company}-${job.title}`} className="rounded-2xl border border-[rgba(var(--border-rgb),0.6)] bg-white/70 p-6 shadow-sm">
+                      <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+                        <div>
+                          <h3 className="text-xl font-bold">{job.title}</h3>
+                          <p className="mt-1 text-[rgb(var(--muted-rgb))]">
+                            {job.company} | {job.location}
+                          </p>
+                        </div>
+                        <span className="badge inline-flex w-fit items-center gap-2">
+                          <Calendar className="h-3.5 w-3.5" />
+                          {job.dates}
                         </span>
                       </div>
-                      <p className="text-[rgb(var(--muted-rgb)))] mb-2">Istanbul Technical University, Istanbul, Turkey</p>
-                      <p className="text-sm text-[rgb(var(--muted-rgb)))]">GPA: 3.8/4.0</p>
-                    </div>
-                  </motion.div>
 
-                  <motion.div
-                    className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                    whileHover={{ y: -5 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                  >
-                    <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
-                    <div className="p-6 pl-8">
-                      <div className="flex flex-wrap items-center justify-between mb-2">
-                        <h3 className="text-xl font-semibold group-hover:text-[rgb(var(--accent-rgb)))] transition-colors">MSc in Computer Engineering</h3>
-                        <span className="badge flex items-center">
-                          <Calendar className="h-3 w-3 mr-1.5" />
-                          2017
-                        </span>
-                      </div>
-                      <p className="text-[rgb(var(--muted-rgb)))] mb-2">Istanbul Şehir University, Istanbul, Turkey</p>
-                      <p className="text-sm text-[rgb(var(--muted-rgb)))]">GPA: 3.94/4.0 (Best Student Award)</p>
-                      </div>
-                  </motion.div>
-
-                  <motion.div
-                    className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                    whileHover={{ y: -5 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                  >
-                    <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
-                    <div className="p-6 pl-8">
-                      <div className="flex flex-wrap items-center justify-between mb-2">
-                        <h3 className="text-xl font-semibold group-hover:text-[rgb(var(--accent-rgb)))] transition-colors">BSc in Computer Engineering</h3>
-                        <span className="badge flex items-center">
-                          <Calendar className="h-3 w-3 mr-1.5" />
-                          2010
-                        </span>
-                      </div>
-                      <p className="text-[rgb(var(--muted-rgb)))] mb-2">Iran University of Science and Technology, Tehran, Iran</p>
-                      <p className="text-sm text-[rgb(var(--muted-rgb)))]">2nd Best Senior Student</p>
-                    </div>
-                  </motion.div>
+                      <ul className="mt-5 space-y-3">
+                        {job.bullets.map((bullet) => (
+                          <li key={bullet} className="relative pl-5 text-sm leading-relaxed text-[rgb(var(--foreground-rgb))] before:absolute before:left-0 before:top-2.5 before:h-1.5 before:w-1.5 before:rounded-full before:bg-[rgb(var(--accent-rgb))]">
+                            {bullet}
+                          </li>
+                        ))}
+                      </ul>
+                    </article>
+                  ))}
                 </div>
-                </motion.section>
+              </section>
 
-                <motion.section
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.7 }}
-                  className="relative"
-                >
-                  <div className="flex items-center mb-6">
-                    <div className="h-8 w-8 rounded-lg bg-[rgba(var(--accent-rgb),0.1)] flex items-center justify-center mr-3 text-[rgb(var(--accent-rgb)))]">
-                      <Award className="h-4 w-4" />
-                    </div>
-                  <h2 className="section-title text-[rgb(var(--accent-rgb)))]">Honors & Awards</h2>
-                  </div>
+              <section>
+                <div className="mb-6 flex items-center gap-3">
+                  <Code className="h-5 w-5 text-[rgb(var(--accent-rgb))]" />
+                  <h2 className="text-2xl font-bold">Technical Skills</h2>
+                </div>
 
-                <div className="space-y-4">
-                    <motion.div
-                      className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                      whileHover={{ y: -5 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                    >
-                    <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
-                    <div className="p-6 pl-8">
-                      <h3 className="font-semibold text-[rgb(var(--accent-rgb)))] mb-2">University Fellowship Award</h3>
-                      <p className="text-[rgb(var(--muted-rgb)))] text-sm mb-1">2020–2021</p>
-                      <p className="text-sm">Competitive academic fellowship awarded to less than 15% of applicants.</p>
+                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                  {skills.map((group) => (
+                    <div key={group.title} className="rounded-2xl border border-[rgba(var(--border-rgb),0.6)] bg-white/70 p-5">
+                      <h3 className="mb-2 text-lg font-semibold text-[rgb(var(--accent-rgb))]">{group.title}</h3>
+                      <p className="text-sm leading-relaxed text-[rgb(var(--foreground-rgb))]">{group.items}</p>
                     </div>
-                    </motion.div>
+                  ))}
+                </div>
+              </section>
 
-                    <motion.div
-                      className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                      whileHover={{ y: -5 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                    >
-                    <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
-                    <div className="p-6 pl-8">
-                      <h3 className="font-semibold text-[rgb(var(--accent-rgb)))] mb-2">Graduate Research & Teaching Assistantship</h3>
-                      <p className="text-[rgb(var(--muted-rgb)))] text-sm mb-1">2021–2023</p>
-                      <p className="text-sm">Merit-based; granted to fewer than 20% of graduate candidates.</p>
-                    </div>
-                    </motion.div>
+              <section>
+                <div className="mb-6 flex items-center gap-3">
+                  <GraduationCap className="h-5 w-5 text-[rgb(var(--accent-rgb))]" />
+                  <h2 className="text-2xl font-bold">Education</h2>
+                </div>
 
-                    <motion.div
-                      className="card hover:!transform-none !border-[rgba(var(--border-rgb),0.7)] p-0 overflow-hidden group relative"
-                      whileHover={{ y: -5 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                    >
-                    <div className="absolute top-0 left-0 w-2 h-full bg-[rgb(var(--accent-rgb)))] opacity-60"></div>
-                    <div className="p-6 pl-8">
-                      <h3 className="font-semibold text-[rgb(var(--accent-rgb)))] mb-2">European Union Scholarship</h3>
-                      <p className="text-[rgb(var(--muted-rgb)))] text-sm mb-1">2014–2017</p>
-                      <p className="text-sm">Awarded for master's degree for ranking 1st among Computer Engineering students.</p>
+                <div className="grid gap-4">
+                  {education.map((item) => (
+                    <div key={item.degree} className="rounded-2xl border border-[rgba(var(--border-rgb),0.6)] bg-white/70 p-6">
+                      <div className="flex flex-col gap-2 lg:flex-row lg:items-start lg:justify-between">
+                        <div>
+                          <h3 className="text-xl font-bold">{item.degree}</h3>
+                          <p className="mt-1 text-[rgb(var(--muted-rgb))]">
+                            {item.school} | {item.location}
+                          </p>
+                        </div>
+                        <span className="badge inline-flex w-fit items-center gap-2">
+                          <Calendar className="h-3.5 w-3.5" />
+                          {item.dates}
+                        </span>
+                      </div>
+                      <p className="mt-4 text-sm leading-relaxed text-[rgb(var(--foreground-rgb))]">{item.note}</p>
                     </div>
-                    </motion.div>
-                  </div>
-                </motion.section>
+                  ))}
+                </div>
+              </section>
+
+              <section>
+                <div className="mb-6 flex items-center gap-3">
+                  <Award className="h-5 w-5 text-[rgb(var(--accent-rgb))]" />
+                  <h2 className="text-2xl font-bold">Honors & Awards</h2>
+                </div>
+
+                <div className="grid gap-4 md:grid-cols-3">
+                  {honors.map((honor) => (
+                    <div key={honor.title} className="rounded-2xl border border-[rgba(var(--border-rgb),0.6)] bg-white/70 p-5">
+                      <h3 className="text-lg font-semibold">{honor.title}</h3>
+                      <p className="mt-2 text-sm text-[rgb(var(--muted-rgb))]">{honor.dates}</p>
+                      <p className="mt-3 text-sm leading-relaxed text-[rgb(var(--foreground-rgb))]">{honor.note}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
             </div>
-          </motion.div>
+          </motion.section>
         </div>
       </main>
 
       <Footer />
-
-      {/* Back to top button */}
-      <AnimatePresence>
-        {showScrollTop && (
-          <motion.button
-            className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-[rgba(var(--accent-rgb),0.9)] text-white flex items-center justify-center shadow-lg z-50"
-            onClick={scrollToTop}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            aria-label="Scroll to top"
-          >
-            <ChevronUp className="w-5 h-5" />
-          </motion.button>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

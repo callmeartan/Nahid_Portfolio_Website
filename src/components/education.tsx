@@ -1,6 +1,6 @@
 "use client";
 
-import { GraduationCap, Book, Target, ExternalLink, Calendar, MapPin, Award } from "lucide-react";
+import { GraduationCap, Book, Calendar, MapPin, Award } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
@@ -10,48 +10,36 @@ export function Education() {
   const [activeIndex, setActiveIndex] = useState(0);
   const educationData = [
     {
-      id: "university",
+      id: "phd",
       period: "Sep 2020 - Jun 2025",
       title: "PhD in Electrical and Computer Engineering",
       institution: "University of California, Santa Cruz",
       location: "Santa Cruz, CA, USA",
-      description: "Title of PhD Thesis: 'Extracting Implicit Features from Hand Fidgeting in ADHD Using Machine Learning'. GPA: 4.0/4.0. Designed and optimized deep learning models—including LSTM, encoder-decoder, and CNN architectures—to predict user behavior and extract insights from multimodal sensor data. Developed frameworks integrating hardware and software systems to streamline experimentation, accelerate data collection, and support real-time analysis across research environments.",
-      skills: ["Deep Learning", "Machine Learning", "Signal Processing", "Research", "LSTM", "CNN"],
+      description: "Title of PhD Thesis: 'Extracting Implicit Features from Hand Fidgeting in ADHD Using Machine Learning'. GPA: 4.0/4.0. Developed deep learning models for multimodal sensor data, including CNN and LSTM-based approaches, to predict user behavior and cognitive states. Built hardware-software pipelines that streamlined experimentation, accelerated data collection, and supported real-time analysis in research workflows.",
+      skills: ["Deep Learning", "Multimodal AI", "Machine Learning", "Signal Processing", "LSTM", "CNN"],
       icon: GraduationCap,
       color: "rgb(var(--accent-rgb))",
       highlight: "PhD in ECE, GPA: 4.0/4.0"
     },
     {
-      id: "certificates",
-      period: "Sep 2017 - Sep 2020",
-      title: "PhD in Computer Engineering (Transferred to UCSC)",
-      institution: "Istanbul Technical University",
-      location: "Istanbul, Turkey",
-      description: "Conducted advanced research on decision-making algorithms for Advanced Driver Assistance Systems (ADAS). Collaborated with faculty and research teams to explore machine learning and computer vision innovations for next-generation mobility systems. Designed and simulated complex driving environments to test model adaptability, improving robustness and generalization across variable conditions. GPA: 3.8/4.0.",
-      skills: ["ADAS", "Computer Vision", "Machine Learning", "Simulation", "CARLA"],
-      icon: GraduationCap,
-      color: "rgb(124, 58, 237)",
-      highlight: "PhD (Transferred), GPA: 3.8/4.0"
-    },
-    {
-      id: "masters",
+      id: "msc",
       period: "Sep 2014 - Sep 2017",
       title: "MSc in Computer Engineering",
       institution: "Istanbul Şehir University",
       location: "Istanbul, Turkey",
-      description: "Best Student Award. GPA: 3.94/4.0. Led software development and research initiatives within the EU-funded ISG4 project, creating AI-driven educational games for children with special needs. Coordinated cross-functional and international teams to align research objectives, software deliverables, and timelines while integrating machine learning and NLP innovations into educational frameworks.",
+      description: "Best Student Award. GPA: 3.86/4.0. Led software development and research initiatives within the EU-funded ISG4 project, creating AI-driven educational systems for children with special needs. Integrated NLP and speech-to-text capabilities to improve engagement and learning outcomes while coordinating cross-functional and international teams.",
       skills: ["AI Systems", "NLP", "Speech Systems", "Educational Technology"],
       icon: Award,
       color: "#10b981",
-      highlight: "Best Student Award, GPA: 3.94/4.0"
+      highlight: "Best Student Award, GPA: 3.86/4.0"
     },
     {
-      id: "bachelors",
+      id: "bsc",
       period: "2006 - 2010",
       title: "BSc in Computer Engineering",
       institution: "Iran University of Science and Technology",
       location: "Tehran, Iran",
-      description: "2nd Best Senior Student. Developed foundational expertise in computer engineering, software development, and system design. Developed and implemented software solutions tailored to research and enterprise needs, integrating cross-platform systems to improve interoperability, scalability, and reliability.",
+      description: "2nd Best Senior Student. Built foundational expertise in computer engineering, software development, and system design. Developed software solutions tailored to research and enterprise needs, improving interoperability, scalability, and reliability across cross-platform systems.",
       skills: ["Computer Engineering", "Software Development", "System Design"],
       icon: Book,
       color: "#f59e0b",
@@ -112,11 +100,11 @@ export function Education() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="section-title font-heading relative inline-block">
-            Education & Expertise
+            Education
             <div className="absolute -z-10 bottom-0 left-0 right-0 h-3 bg-[rgba(var(--accent-rgb),0.2)] -rotate-1 translate-y-1"></div>
           </h2>
           <p className="section-description text-[rgb(var(--muted-rgb))] max-w-2xl mx-auto">
-            My academic journey and continuous pursuit of knowledge that shapes my professional growth.
+            The academic foundation behind my work in machine learning, multimodal AI, and autonomous systems.
           </p>
         </motion.div>
         
@@ -148,7 +136,7 @@ export function Education() {
                 )}
                 <span className="relative z-10 flex items-center justify-center" style={{ color: activeIndex === index ? 'white' : 'inherit' }}>
                   <item.icon className="h-3.5 w-3.5 mr-2" />
-                  {item.id === "university" ? "PhD" : item.id === "certificates" ? "PhD (Transferred)" : item.id === "masters" ? "MSc" : "BSc"}
+                  {item.id === "phd" ? "PhD" : item.id === "msc" ? "MSc" : "BSc"}
                 </span>
               </motion.button>
             ))}

@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Outfit, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import Script from "next/script";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -35,9 +34,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nahidnasiri.com"),
-  title: "Nahid Nasiri — Machine Learning Engineer | AI Systems | GenAI | Intelligent Automation",
-  description: "Machine Learning Engineer specializing in AI systems, Generative AI, and intelligent automation. PhD researcher building production-grade ML pipelines, computer vision systems, and large language models.",
-  keywords: ["Machine Learning Engineer", "AI Systems", "Generative AI", "LLM", "Deep Learning", "Computer Vision", "MLOps", "PhD Researcher", "Machine Learning", "AI Engineer"],
+  title: "Nahid Nasiri — Machine Learning Engineer | LLMs | Multimodal AI | Autonomous Systems",
+  description: "Machine Learning Engineer specializing in LLMs, multimodal AI, and computer vision for autonomous systems. Experienced in scalable ML models, RAG-based systems, and data pipelines.",
+  keywords: ["Machine Learning Engineer", "LLMs", "Multimodal AI", "Autonomous Systems", "RAG", "Computer Vision", "PyTorch", "TensorFlow", "Hugging Face", "Data Pipelines"],
   creator: "Nahid Nasiri",
   authors: [{ name: "Nahid Nasiri", url: "https://nahidnasiri.com" }],
   generator: "Next.js",
@@ -53,8 +52,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://nahidnasiri.com",
-    title: "Nahid Nasiri — Machine Learning Engineer | AI Systems | GenAI | Intelligent Automation",
-    description: "Machine Learning Engineer and PhD researcher building production-grade AI systems across computer vision, large language models, and intelligent automation.",
+    title: "Nahid Nasiri — Machine Learning Engineer | LLMs | Multimodal AI | Autonomous Systems",
+    description: "Machine Learning Engineer specializing in LLMs, multimodal AI, and computer vision for autonomous systems.",
     siteName: "Nahid Nasiri Portfolio",
     images: [
       {
@@ -67,8 +66,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nahid Nasiri — Machine Learning Engineer | AI Systems | GenAI | Intelligent Automation",
-    description: "Machine Learning Engineer and PhD researcher building production-grade AI systems across computer vision, large language models, and intelligent automation.",
+    title: "Nahid Nasiri — Machine Learning Engineer | LLMs | Multimodal AI | Autonomous Systems",
+    description: "Machine Learning Engineer specializing in LLMs, multimodal AI, and computer vision for autonomous systems.",
     creator: "@nahidnasiri",
     images: ["/images/og-image.jpg"],
   },

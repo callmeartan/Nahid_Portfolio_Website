@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Send, CheckCircle, AlertTriangle, Mail } from "lucide-react";
+import { Send, CheckCircle, AlertTriangle, Mail, Phone, Linkedin } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { submitContactForm } from "@/lib/services/contact";
 
@@ -169,8 +169,8 @@ export function Contact() {
           variants={variants}
         >
           <h2 className="section-title font-heading mb-4">Get In Touch</h2>
-          <p className="section-description">
-            Have a project in mind or want to discuss collaboration opportunities? Send me a message and I'll get back to you as soon as possible.
+            <p className="section-description">
+            Have a project in mind or want to discuss ML, multimodal AI, or autonomous systems work? Send me a message and I’ll get back to you as soon as possible.
           </p>
         </motion.div>
         
@@ -202,10 +202,42 @@ export function Contact() {
                   <div>
                     <h4 className="text-lg font-medium mb-1">Email</h4>
                     <a 
-                      href="mailto:nnasiri@ucsc.edu" 
+                      href="mailto:nahid.nasiri2006@gmail.com" 
                       className="text-[rgb(var(--muted-rgb))] hover:text-[rgb(var(--accent-rgb))] transition-colors"
                     >
-                      nnasiri@ucsc.edu
+                      nahid.nasiri2006@gmail.com
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 p-3 rounded-lg bg-[rgba(var(--accent-rgb),0.1)] text-[rgb(var(--accent-rgb))]">
+                    <Phone className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-medium mb-1">Phone</h4>
+                    <a 
+                      href="tel:+16282001735" 
+                      className="text-[rgb(var(--muted-rgb))] hover:text-[rgb(var(--accent-rgb))] transition-colors"
+                    >
+                      (628) 200-1735
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 p-3 rounded-lg bg-[rgba(var(--accent-rgb),0.1)] text-[rgb(var(--accent-rgb))]">
+                    <Linkedin className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-medium mb-1">LinkedIn</h4>
+                    <a 
+                      href="https://www.linkedin.com/in/nahid-nasiri-17b5aa136/" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[rgb(var(--muted-rgb))] hover:text-[rgb(var(--accent-rgb))] transition-colors"
+                    >
+                      linkedin.com/in/nahid-nasiri-17b5aa136
                     </a>
                   </div>
                 </div>
@@ -216,7 +248,7 @@ export function Contact() {
                   <div className="pl-16 py-4 relative">
                     <div className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-[1px] bg-[rgba(var(--border-rgb),0.5)]"></div>
                     <p className="text-[rgb(var(--muted-rgb))] text-sm">
-                      I'm currently open to senior engineering roles, research collaborations, and strategic consulting opportunities.
+                      I’m currently open to ML engineering, applied research, and collaboration opportunities in LLMs, multimodal AI, and autonomous systems.
                     </p>
                   </div>
                 </div>

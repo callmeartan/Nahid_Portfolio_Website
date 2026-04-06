@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, Github, Linkedin, Instagram, Heart, ArrowUp } from "lucide-react";
+import { Mail, Linkedin, Phone, ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -43,7 +43,7 @@ export function Footer() {
     { 
       name: "Email", 
       icon: <Mail className="h-5 w-5" />, 
-      href: "mailto:nnasiri@ucsc.edu",
+      href: "mailto:nahid.nasiri2006@gmail.com",
       label: "Send email" 
     }
   ];
@@ -63,7 +63,7 @@ export function Footer() {
               <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-[rgba(var(--accent-rgb),0.5)] rounded-full group-hover:w-full transition-all duration-300"></span>
             </Link>
             <p className="text-[rgb(var(--muted-rgb))] mb-6 text-sm leading-relaxed">
-              Machine Learning Engineer and PhD researcher building production-grade AI systems across computer vision, large language models, and intelligent automation. Specializing in ML pipelines, validation automation, and simulation-driven workflows.
+              Machine Learning Engineer specializing in LLMs, multimodal AI, and computer vision for autonomous systems. Building scalable ML models, RAG systems, and data pipelines that improve efficiency and decision-making.
             </p>
             <div className="flex space-x-3">
               {socialLinks.map((link) => (
@@ -116,10 +116,22 @@ export function Footer() {
                 <div>
                   <p className="text-sm font-medium mb-1">Email:</p>
                   <a 
-                    href="mailto:nnasiri@ucsc.edu" 
+                    href="mailto:nahid.nasiri2006@gmail.com" 
                     className="text-sm text-[rgb(var(--muted-rgb))] hover:text-[rgb(var(--accent-rgb))] transition-colors group-hover:underline"
                   >
-                    nnasiri@ucsc.edu
+                    nahid.nasiri2006@gmail.com
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start group">
+                <Phone className="h-5 w-5 mr-3 mt-0.5 text-[rgb(var(--accent-rgb))]" />
+                <div>
+                  <p className="text-sm font-medium mb-1">Phone:</p>
+                  <a 
+                    href="tel:+16282001735" 
+                    className="text-sm text-[rgb(var(--muted-rgb))] hover:text-[rgb(var(--accent-rgb))] transition-colors group-hover:underline"
+                  >
+                    (628) 200-1735
                   </a>
                 </div>
               </li>

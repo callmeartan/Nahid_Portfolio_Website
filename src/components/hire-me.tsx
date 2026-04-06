@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Rocket, BrainCircuit, Palette, Layers, TrendingUp, Award, Zap } from "lucide-react";
+import { Rocket, BrainCircuit, Layers, TrendingUp, Award, Zap } from "lucide-react";
 import React from "react";
 
 export function HireMe() {
@@ -12,38 +12,38 @@ export function HireMe() {
   const features = [
     {
       icon: BrainCircuit,
-      title: "Research & Production Expertise",
-      description: "Brings a unique blend of PhD-level research rigor and production-grade engineering. Successfully bridges applied research and real-world deployment to advance AI-enabled technologies.",
+      title: "Research + Product",
+      description: "Brings PhD-level research rigor and production engineering together to turn applied ML into systems that ship and create measurable business value.",
       color: "rgb(var(--accent-rgb))"
     },
     {
       icon: Rocket,
-      title: "Proven Impact & Results",
-      description: "Track record of delivering measurable improvements: 40% reduction in manual lookup time, 25% increase in AI reasoning accuracy, 47% improvement in perception accuracy, and 45% increase in diagnostic precision.",
+      title: "Proven Impact",
+      description: "Delivered measurable outcomes including a 65% reduction in ticket volume, a 70% drop in response time, an 83% reduction in time-to-insight, and a 47% improvement in vision accuracy.",
       color: "#10b981"
     },
     {
       icon: Layers,
       title: "End-to-End ML Systems",
-      description: "Experienced in developing, testing, and optimizing deep learning models, computer vision systems, and large language models to enhance performance, scalability, and reliability.",
+      description: "Experienced in building and deploying scalable ML models, RAG-based systems, multimodal AI, and computer vision pipelines for autonomous systems.",
       color: "#3b82f6"
     },
     {
       icon: Zap,
       title: "Intelligent Automation",
-      description: "Skilled in designing automation frameworks, simulation environments, and multimodal data pipelines that accelerate validation and elevate model precision.",
+      description: "Designs automation frameworks, NLP pipelines, and data workflows that accelerate validation, improve model selection, and reduce manual effort.",
       color: "#8b5cf6"
     },
     {
       icon: TrendingUp,
-      title: "Cross-Functional Collaboration",
-      description: "Experienced in coordinating cross-functional and international teams, aligning research objectives with software deliverables, and driving multimillion-dollar revenue gains.",
+      title: "Cross-Functional Delivery",
+      description: "Collaborates across engineering, product, and leadership teams to convert ambiguous problems into clear ML roadmaps and production-ready tools.",
       color: "#f59e0b"
     },
     {
       icon: Award,
-      title: "Technical Rigor & Innovation",
-      description: "Brings technical rigor and creative problem-solving to complex challenges in AI systems, GenAI, and intelligent automation.",
+      title: "LLMs and Multimodal AI",
+      description: "Works across fine-tuning, RAG, LangChain, computer vision, and foundation models to build AI systems that are practical and reliable.",
       color: "#ec4899"
     }
   ];
@@ -95,11 +95,11 @@ export function HireMe() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="section-title font-heading relative inline-block">
-            Research & Engineering Excellence
+            Research & Engineering Impact
             <div className="absolute -z-10 bottom-0 left-0 right-0 h-3 bg-[rgba(var(--accent-rgb),0.2)] -rotate-1 translate-y-1"></div>
           </h2>
           <p className="section-description max-w-2xl mx-auto">
-            Combining PhD-level research expertise with production-grade engineering to deliver measurable impact in AI systems, machine learning, and intelligent automation.
+            Combining applied research and production-grade engineering to deliver measurable impact in LLMs, multimodal AI, computer vision, and autonomous systems.
           </p>
         </motion.div>
 
