@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 :root {
+  --font-sans: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: "Outfit", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-secondary: "Space Grotesk", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --foreground-rgb: 15, 23, 42;
   --background-rgb: 255, 255, 255;
   --background-alt-rgb: 248, 250, 252;

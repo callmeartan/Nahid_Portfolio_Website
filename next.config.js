@@ -2,6 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      'lucide-react$': require.resolve('lucide-react/dist/cjs/lucide-react.js'),
+    };
+
+    return config;
+  },
   images: {
     remotePatterns: [
       {
